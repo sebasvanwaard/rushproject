@@ -26,10 +26,3 @@ class Experiment:
         numbers_lst = [s for s in name if s.isdigit()]
         shape = int(''.join(numbers_lst))
         return shape
-
-
-parser = argparse.ArgumentParser(description = "filepath")
-parser.add_argument("board", help = "input file (csv)")
-args = parser.parse_args()
-filepath = args.board
-test = Experiment(filepath)
