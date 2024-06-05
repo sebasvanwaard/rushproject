@@ -25,4 +25,5 @@ class Experiment:
         name = filename.split('/')[-1].split('x')[0]
         numbers_lst = [s for s in name if s.isdigit()]
         shape = int(''.join(numbers_lst))
+        
         return shape
