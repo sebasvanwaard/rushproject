@@ -15,7 +15,7 @@ class Board:
 
         for _, car in car_info.iterrows():
             cars[car['car']] = Car(car['car'], car['col'] - 1, car['row'] - 1, car['length'],car['orientation'])
-    
+
         return cars
 
     def draw(self, print_in_terminal = False):
@@ -26,18 +26,17 @@ class Board:
         returns:
             the numpy array of the board
         """
-        board = np.full((self.shape, self.shape), '.')
+        self.board = np.full((self.shape, self.shape), '.')
 
         for car in self.cars.values():
             if car.orientation == 'H':
                 for i in range(car.length):
-                    board[car.row, car.column + i] = car.name
+                    self.board[car.row, car.column + i] = car.name
             else:
                 for i in range(car.length):
-                    board[car.row + i, car.column] = car.name
+                    self.board[car.row + i, car.column] = car.name
 
         if print_in_terminal:
-            print(board)
-        
-        return board
-        
+            print(self.board)
+
+        return self.board

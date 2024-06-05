@@ -1,18 +1,19 @@
 import pandas as pd
 import argparse
 import numpy as np
-import board
 
 
 class Car:
 	def __init__(self, name, column, row, length, orientation):
+		super().__init__()
+
 		self.name = name
 		self.column = column
 		self.row = row
 		self.length = length
 		self.orientation = orientation
 
-	def move(self, steps):
+	def move(self, steps, board):
 		
 		# move vehicles with horizontal orientation
 		if self.orientation == 'H':
