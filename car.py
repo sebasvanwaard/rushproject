@@ -14,7 +14,7 @@ class Car:
 	def move(self, steps):
 		
 		# move vehicles with horizontal orientation
-		if self.orientation == H:
+		if self.orientation == 'H':
 
 			# moving of the horizontal cars
 			if self.length == 2:
@@ -39,7 +39,7 @@ class Car:
 					self.column += steps
 		
 		# move vehicles with vertical orientation
-		if orientation == V:
+		if self.orientation == 'V':
 
 			# moving of the vertical cars
 			if self.length == 2:
