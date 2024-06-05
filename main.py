@@ -12,7 +12,7 @@ filepath = args.board
 test = Experiment(filepath)
 
 test.board.draw(print_in_terminal=True)
-test.board.cars['X'].move(-1, test.board.board)
+test.board.cars['J'].move(-1, test.board.board)
 test.board.draw(print_in_terminal=True)
-test.board.cars['X'].move(2, test.board.board)
+test.board.cars['I'].move(2, test.board.board)
 test.board.draw(print_in_terminal=True)

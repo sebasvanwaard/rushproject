@@ -78,14 +78,14 @@ class Car:
 						if board[(self.row + 1 + i), self.column] != '.':
 							return
 					else:
-						self.column += steps
+						self.row += steps
 
 				else: 
 					for i in range(steps, 0):
 						if board[(self.row + i), self.column] != '.':
 							return
 					else:
-						self.column += steps
+						self.row += steps
 			
 			# moving of the vertical trucks
 			if self.length == 3:
@@ -100,14 +100,14 @@ class Car:
 						if board[(self.row + 2 + i), self.column] != '.':
 							return
 					else:
-						self.column += steps
+						self.row += steps
 
 				else: 
 					for i in range(steps, 0):
 						if board[(self.row + i), self.column] != '.':
 							return
 					else:
-						self.column += steps
+						self.row += steps
 		
 
 
