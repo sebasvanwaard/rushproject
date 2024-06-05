@@ -12,3 +12,5 @@ filepath = args.board
 test = Experiment(filepath)
 
 test.board.draw(print_in_terminal=True)
+test.board.cars['A'].move(-1)
+test.board.draw(print_in_terminal=True)
