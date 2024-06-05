@@ -16,36 +16,52 @@ class Car:
 		# move vehicles with horizontal orientation
 		if self.orientation == H:
 
-			# dont move cars of the board
+			# moving of the horizontal cars
 			if self.length == 2:
-				if (self.column + steps) > 5 or (self.column + steps) < 1:
+
+				# dont move horizontal cars of the board
+				if (self.column + steps) > 4 or (self.column + steps) < 0:
 					pass
+				
+				# move the horizontal car
+				else:
+					self.column += steps
 			
-			# dont move trucks of the board
+			# moving of the horizontal trucks
 			if self.length == 3:
-				if (self.column + steps) > 4 or (self.column + steps) < 1:
+
+				# dont move horizontal trucks of the board
+				if (self.column + steps) > 3 or (self.column + steps) < 0:
 					pass
-			
-			# move the horizontal vehicle
-			else:
-				self.column += steps
+
+				# move the horizontal truck
+				else:
+					self.column += steps
 		
 		# move vehicles with vertical orientation
 		if orientation == V:
 
-			# dont move cars of the board
+			# moving of the vertical cars
 			if self.length == 2:
-				if (self.row + steps) > 5 or (self.row + steps) < 1:
+
+				# dont move vertical cars of the board
+				if (self.row + steps) > 4 or (self.row + steps) < 0:
 					pass
+				
+				# moving vertical cars
+				else:
+					self.row += steps
 			
-			# dont move trucks of the board
+			# moving of the vertical trucks
 			if self.length == 3:
-				if (self.row + steps) > 4 or (self.row + steps) < 1:
+
+				# dont move vertical trucks of the board
+				if (self.row + steps) > 3 or (self.row + steps) < 0:
 					pass
-			
-			# move the vertical vehicle
-			else:
-				self.row += steps
+				
+				# move vertical trucks
+				else:
+					self.row += steps
 		
 
 
