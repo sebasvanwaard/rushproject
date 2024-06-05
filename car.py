@@ -14,7 +14,7 @@ class Car:
 		self.orientation = orientation
 
 	def move(self, steps, board):
-		
+
 		# move vehicles with horizontal orientation
 		if self.orientation == 'H':
 
@@ -23,30 +23,44 @@ class Car:
 
 				# dont move horizontal cars of the board
 				if (self.column + steps) > 4 or (self.column + steps) < 0:
-					pass
+					return
 				
 				# dont move horizontal cars if another car is in that place
-				elif board((self.column + steps + 1), self.row) != '.':
-					pass
-				
-				# move the horizontal car
+				if steps > 0:
+					for i in range(1, steps + 1):
+						if board[self.row, (self.column + 1 + i)] != '.': 
+							return
+					else:
+						self.column += steps
+
 				else:
-					self.column += steps
+					for i in range(steps, 0):
+						if board[self.row, (self.column + i)] != '.':
+							return 
+					else:
+						self.column += steps
 			
 			# moving of the horizontal trucks
 			if self.length == 3:
 
 				# dont move horizontal trucks of the board
 				if (self.column + steps) > 3 or (self.column + steps) < 0:
-					pass
+					return
 
 				# dont move horizontal trucks if another car is in that place
-				elif board((self.column + steps + 2), self.row) != '.':
-					pass
+				if steps > 0:
+					for i in range(1, steps + 1):
+						if board[self.row, (self.column + 2 + i)] != '.': 
+							return
+					else:
+						self.column += steps
 
-				# move the horizontal truck
 				else:
-					self.column += steps
+					for i in range(steps, 0):
+						if board[self.row, (self.column + i)] != '.':
+							return
+					else:
+						self.column += steps
 		
 		# move vehicles with vertical orientation
 		if self.orientation == 'V':
@@ -56,30 +70,44 @@ class Car:
 
 				# dont move vertical cars of the board
 				if (self.row + steps) > 4 or (self.row + steps) < 0:
-					pass
+					return
 
-				# dont move vertical cars if another car is in that place
-				elif board((self.column + steps + 1), self.row) != '.':
-					pass
-				
-				# moving vertical cars
-				else:
-					self.row += steps
+				# dont move vertical cars if another vehicle is in that place
+				if steps > 0:
+					for i in range(1, steps + 1):
+						if board[(self.row + 1 + i), self.column] != '.':
+							return
+					else:
+						self.column += steps
+
+				else: 
+					for i in range(steps, 0):
+						if board[(self.row + i), self.column] != '.':
+							return
+					else:
+						self.column += steps
 			
 			# moving of the vertical trucks
 			if self.length == 3:
 
 				# dont move vertical trucks of the board
 				if (self.row + steps) > 3 or (self.row + steps) < 0:
-					pass
+					return
 				
-				# dont move vertical trucks if another car is in that place
-				elif board((self.column + steps + 2), self.row) != '.':
-					pass
-				
-				# move vertical trucks
-				else:
-					self.row += steps
+				# dont move vertical trucks if another vehicle is in that place
+				if steps > 0:
+					for i in range(i, steps + 1):
+						if board[(self.row + 2 + i), self.column] != '.':
+							return
+					else:
+						self.column += steps
+
+				else: 
+					for i in range(steps, 0):
+						if board[(self.row + i), self.column] != '.':
+							return
+					else:
+						self.column += steps
 		
 
 
