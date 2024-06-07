@@ -51,19 +51,24 @@ class Experiment:
 
         self.board.draw(print_in_terminal=True)
 
-        i = 0
-        while i < n:
+        valid_moves = 0
+        total_moves = 0
+        while valid_moves < n:
             car = self.board.cars[car_names[random.randint(0, len(car_names)-1)]]
             step = random.choice(step_choices)
             if car.move(step, self.board.board):
                 moves.append((car.name, step))
-                self.board.draw(print_in_terminal=True)
+                self.board.draw(print_in_terminal=False)
 
-                i += 1
+                valid_moves += 1
             
             if self.board.cars['X'].column == self.board.shape - 2:
                 print("Solved!!")
                 break
+
+            total_moves += 1
         
         self.board.draw(print_in_terminal=True)
         self.print_end_output()
+        print(f"valid moves: {valid_moves}")
+        print(f"total moves: {total_moves}")
