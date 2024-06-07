@@ -12,6 +12,7 @@ class Car:
 		self.row = row
 		self.length = length
 		self.orientation = orientation
+		self.moves = 0
 
 	def move(self, steps, board):
 
@@ -24,22 +25,24 @@ class Car:
 				# dont move horizontal cars of the board
 				if (self.column + steps) > 4 or (self.column + steps) < 0:
 					return
-				
+
 				# dont move horizontal cars if another car is in that place
 				if steps > 0:
 					for i in range(1, steps + 1):
-						if board[self.row, (self.column + 1 + i)] != '.': 
+						if board[self.row, (self.column + 1 + i)] != '.':
 							return
 					else:
 						self.column += steps
+						self.moves += steps
 
 				else:
 					for i in range(steps, 0):
 						if board[self.row, (self.column + i)] != '.':
-							return 
+							return
 					else:
 						self.column += steps
-			
+						self.moves += steps
+
 			# moving of the horizontal trucks
 			if self.length == 3:
 
@@ -50,10 +53,11 @@ class Car:
 				# dont move horizontal trucks if another car is in that place
 				if steps > 0:
 					for i in range(1, steps + 1):
-						if board[self.row, (self.column + 2 + i)] != '.': 
+						if board[self.row, (self.column + 2 + i)] != '.':
 							return
 					else:
 						self.column += steps
+						self.moves += steps
 
 				else:
 					for i in range(steps, 0):
@@ -61,7 +65,8 @@ class Car:
 							return
 					else:
 						self.column += steps
-		
+						self.moves += steps
+
 		# move vehicles with vertical orientation
 		if self.orientation == 'V':
 
@@ -79,21 +84,23 @@ class Car:
 							return
 					else:
 						self.row += steps
+						self.moves += steps
 
-				else: 
+				else:
 					for i in range(steps, 0):
 						if board[(self.row + i), self.column] != '.':
 							return
 					else:
 						self.row += steps
-			
+						self.moves += steps
+
 			# moving of the vertical trucks
 			if self.length == 3:
 
 				# dont move vertical trucks of the board
 				if (self.row + steps) > 3 or (self.row + steps) < 0:
 					return
-				
+
 				# dont move vertical trucks if another vehicle is in that place
 				if steps > 0:
 					for i in range(i, steps + 1):
@@ -101,13 +108,12 @@ class Car:
 							return
 					else:
 						self.row += steps
+						self.moves += steps
 
-				else: 
+				else:
 					for i in range(steps, 0):
 						if board[(self.row + i), self.column] != '.':
 							return
 					else:
 						self.row += steps
-		
-
-
+						self.moves += steps

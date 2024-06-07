@@ -11,8 +11,10 @@ args = parser.parse_args()
 filepath = args.board
 test = Experiment(filepath)
 
+# test.compare_pos_start_end_board()
 test.board.draw(print_in_terminal=True)
 test.board.cars['J'].move(-1, test.board.board)
 test.board.draw(print_in_terminal=True)
 test.board.cars['I'].move(2, test.board.board)
 test.board.draw(print_in_terminal=True)
+test.print_end_output()
