@@ -5,7 +5,6 @@ import numpy as np
 
 class Car:
 	def __init__(self, name, column, row, length, orientation):
-		super().__init__()
 
 		self.name = name
 		self.column = column
