@@ -22,7 +22,7 @@ class Car:
 			if self.length == 2:
 
 				# dont move horizontal cars of the board
-				if (self.column + steps) > 4 or (self.column + steps) < 0:
+				if (self.column + steps) > (board.shape - 2) or (self.column + steps) < 0:
 					return False
 
 				# dont move horizontal cars if another car is in that place otherwise move the car
@@ -46,7 +46,7 @@ class Car:
 			if self.length == 3:
 
 				# dont move horizontal trucks of the board
-				if (self.column + steps) > 3 or (self.column + steps) < 0:
+				if (self.column + steps) > (board.shape - 3) or (self.column + steps) < 0:
 					return False
 
 				# dont move horizontal trucks if another car is in that place otherwise move the truck
@@ -73,7 +73,7 @@ class Car:
 			if self.length == 2:
 
 				# dont move vertical cars of the board
-				if (self.row + steps) > 4 or (self.row + steps) < 0:
+				if (self.row + steps) > (board.shape - 2) or (self.row + steps) < 0:
 					return False
 
 				# dont move vertical cars if another vehicle is in that place otherwise move the car
@@ -97,7 +97,7 @@ class Car:
 			if self.length == 3:
 
 				# dont move vertical trucks of the board
-				if (self.row + steps) > 3 or (self.row + steps) < 0:
+				if (self.row + steps) > (board.shape - 3) or (self.row + steps) < 0:
 					return False
 
 				# dont move vertical trucks if another vehicle is in that place otherwise move the truck
