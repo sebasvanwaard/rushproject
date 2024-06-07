@@ -102,7 +102,7 @@ class Car:
 
 				# dont move vertical trucks if another vehicle is in that place otherwise move the truck
 				if steps > 0:
-					for i in range(i, steps + 1):
+					for i in range(1, steps + 1):
 						if board[(self.row + 2 + i), self.column] != '.':
 							return False
 					else:
