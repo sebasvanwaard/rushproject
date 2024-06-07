@@ -116,3 +116,5 @@ class Car:
 					else:
 						self.row += steps
 						self.moves += steps
+		
+		return True

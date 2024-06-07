@@ -3,6 +3,10 @@ import argparse
 import numpy as np
 from board import Board
 import copy
+
+import random
+
+
 class Experiment:
     def __init__(self, filename):
         self.board = Board(self.get_shape(filename), self.read_file(filename))
@@ -34,10 +38,28 @@ class Experiment:
             output[car.name] = car.moves
         output_df = pd.DataFrame.from_dict(output, orient='index', columns=['move'])
         print(output_df)
-    def random_algorithm(self):
+
+    def random_algorithm(self, n):
         """
         laat de board met auto's random stappen doen voor N keren of totdat het
         een oplossing heeft, houdt bij hoeveel geldige stappen
         dit 10,30,50 keer doen en avg stappen bepalen maybe histogram
         """
-        pass
+        car_names = list(self.board.cars.keys())
+        step_choices = [1, -1]
+        moves = []
+
+        self.board.draw(print_in_terminal=True)
+
+        i = 0
+        while i < n:        
+            car = self.board.cars[car_names[random.randint(0, len(car_names)-1)]]
+            step = random.choice(step_choices)
+            print(car.name, step)
+            if car.move(step, self.board.board):
+                moves.append((car.name, step))
+                i += 1
+        
+        self.board.draw(print_in_terminal=True)
+        print(moves)
+        self.print_end_output()
