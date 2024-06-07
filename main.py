@@ -12,4 +12,4 @@ filepath = args.board
 test = Experiment(filepath)
 
 # test.compare_pos_start_end_board()
-test.random_algorithm(3)
+test.random_algorithm(10000)
