@@ -61,7 +61,8 @@ class Experiment:
 
                 i += 1
             
-            if self.board.cars['X'].column == self.board.shape - 1:
+            if self.board.cars['X'].column == self.board.shape - 2:
+                print("Solved!!")
                 break
         
         self.board.draw(print_in_terminal=True)
