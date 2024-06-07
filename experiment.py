@@ -60,6 +60,9 @@ class Experiment:
                 self.board.draw(print_in_terminal=True)
 
                 i += 1
+            
+            if self.board.cars['X'].column == self.board.shape - 1:
+                break
         
         self.board.draw(print_in_terminal=True)
         self.print_end_output()
