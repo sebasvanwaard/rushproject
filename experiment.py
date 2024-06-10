@@ -74,6 +74,6 @@ class Experiment:
             print(f"valid moves: {valid_moves}")
             print(f"total moves: {total_moves}")
         return solved, valid_moves, total_moves
-    
+
     def reset_board(self):
         self.board = copy.deepcopy(self.starting_board)
