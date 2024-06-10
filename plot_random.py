@@ -12,13 +12,18 @@ def plot_random_csv(csv):
     # print(df)
 
     number_of_iterations = max(df['iteration'])
+    average_moves = df['valid_moves'].mean()
 
-    sns.histplot(df['valid_moves'], bins=50, kde=False, edgecolor='black', color='blue')
+    sns.histplot(df['valid_moves'], bins=50, edgecolor='black', color='blue')
     sns.histplot(df['valid_moves'], bins=50, kde=True, color='red', linewidth=2, alpha=0)
 
     plt.title(f'Distribution of the number of Valid Moves necessary \n to solve the puzzle with {number_of_iterations} Iterations with KDE line')
     plt.xlabel('Valid Moves')
     plt.ylabel('Frequency')
+
+    plt.axvline(average_moves, color='green', linestyle='--', linewidth=2, label=f'Average Number of Moves: {average_moves}')
+
+    plt.legend()
 
     plt.show()
 
