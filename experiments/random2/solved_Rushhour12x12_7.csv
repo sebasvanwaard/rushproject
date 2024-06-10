@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 iteration,solved,valid_moves,total_moves
 1,True,133543,515767
 2,True,199772,799864
@@ -999,3 +1000,7 @@ iteration,solved,valid_moves,total_moves
 998,True,249119,947129
 999,True,38208,151997
 1000,True,204740,801173
+=======
+iteration,solved,valid_moves,total_moves
+1,False,10,60
+>>>>>>> 7ba81ebc914c02dafe7547fb1eb332355d926b27

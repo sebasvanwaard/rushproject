@@ -18,103 +18,50 @@ class Car:
 		# move vehicles with horizontal orientation
 		if self.orientation == 'H':
 
-			# moving of the horizontal cars
-			if self.length == 2:
+			# dont move horizontal cars of the board
+			if (self.column + steps) > (board.shape[0] - self.length) or (self.column + steps) < 0:
+				return False
 
-				# dont move horizontal cars of the board
-				if (self.column + steps) > (board.shape[0] - 2) or (self.column + steps) < 0:
-					return False
-
-				# dont move horizontal cars if another car is in that place otherwise move the car
-				if steps > 0:
-					for i in range(1, steps + 1):
-						if board[self.row, (self.column + 1 + i)] != '.':
-							return False
-					else:
-						self.column += steps
-						self.moves += steps
-
+			# dont move horizontal cars if another car is in that place otherwise move the car
+			if steps > 0:
+				for i in range(1, steps + 1):
+					if board[self.row, (self.column + self.length - 1 + i)] != '.':
+						return False
 				else:
-					for i in range(steps, 0):
-						if board[self.row, (self.column + i)] != '.':
-							return False
-					else:
-						self.column += steps
-						self.moves += steps
+					self.column += steps
+					self.moves += steps
 
-			# moving of the horizontal trucks
-			if self.length == 3:
-
-				# dont move horizontal trucks of the board
-				if (self.column + steps) > (board.shape[0] - 3) or (self.column + steps) < 0:
-					return False
-
-				# dont move horizontal trucks if another car is in that place otherwise move the truck
-				if steps > 0:
-					for i in range(1, steps + 1):
-						if board[self.row, (self.column + 2 + i)] != '.':
-							return False
-					else:
-						self.column += steps
-						self.moves += steps
-
+			else:
+				for i in range(steps, 0):
+					if board[self.row, (self.column + i)] != '.':
+						return False
 				else:
-					for i in range(steps, 0):
-						if board[self.row, (self.column + i)] != '.':
-							return False
-					else:
-						self.column += steps
-						self.moves += steps
+					self.column += steps
+					self.moves += steps
+
 
 		# move vehicles with vertical orientation
 		if self.orientation == 'V':
 
-			# moving of the vertical cars
-			if self.length == 2:
+			# dont move vertical cars of the board
+			if (self.row + steps) > (board.shape[0] - self.length) or (self.row + steps) < 0:
+				return False
 
-				# dont move vertical cars of the board
-				if (self.row + steps) > (board.shape[0] - 2) or (self.row + steps) < 0:
-					return False
-
-				# dont move vertical cars if another vehicle is in that place otherwise move the car
-				if steps > 0:
-					for i in range(1, steps + 1):
-						if board[(self.row + 1 + i), self.column] != '.':
-							return False
-					else:
-						self.row += steps
-						self.moves += steps
-
+			# dont move vertical cars if another vehicle is in that place otherwise move the car
+			if steps > 0:
+				for i in range(1, steps + 1):
+					if board[(self.row + self.length - 1 + i), self.column] != '.':
+						return False
 				else:
-					for i in range(steps, 0):
-						if board[(self.row + i), self.column] != '.':
-							return False
-					else:
-						self.row += steps
-						self.moves += steps
+					self.row += steps
+					self.moves += steps
 
-			# moving of the vertical trucks
-			if self.length == 3:
-
-				# dont move vertical trucks of the board
-				if (self.row + steps) > (board.shape[0] - 3) or (self.row + steps) < 0:
-					return False
-
-				# dont move vertical trucks if another vehicle is in that place otherwise move the truck
-				if steps > 0:
-					for i in range(1, steps + 1):
-						if board[(self.row + 2 + i), self.column] != '.':
-							return False
-					else:
-						self.row += steps
-						self.moves += steps
-
+			else:
+				for i in range(steps, 0):
+					if board[(self.row + i), self.column] != '.':
+						return False
 				else:
-					for i in range(steps, 0):
-						if board[(self.row + i), self.column] != '.':
-							return False
-					else:
-						self.row += steps
-						self.moves += steps
-		
+					self.row += steps
+					self.moves += steps
+					
 		return True
