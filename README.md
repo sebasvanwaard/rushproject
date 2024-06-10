@@ -11,9 +11,12 @@ Een voorbeeldje kan gerund worden door aanroepen van:
 
 ```
 python main.py gameboards/[naam van een gameboard in de map gameboards]
+```
 
 bijvoorbeeld:
+```
 python main.py gameboards/Rushhour6x6_1.csv
+```
 
 
 ## Structuur
