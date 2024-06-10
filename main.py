@@ -13,6 +13,7 @@ def run_random_n_times(filename, n, stepsize=1000000):
     sum_valid_moves = 0
     sum_total_moves = 0
     runs_solved = {}
+    
     for runs in range(n):
         test = Experiment(filepath)
 
@@ -20,8 +21,10 @@ def run_random_n_times(filename, n, stepsize=1000000):
         runs_solved[runs] = solved
         sum_valid_moves += valid_moves
         sum_total_moves += total_moves
+        
     avg_valid_moves = sum_valid_moves / n
     avg_total_moves = sum_total_moves / n
+    
     print(runs_solved)
     print(f"average valid moves: {avg_valid_moves}")
     print(f"average total moves: {avg_total_moves}")
