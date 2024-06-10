@@ -23,8 +23,8 @@ def run_random_n_times(filename, n, stepsize=1000000):
     avg_valid_moves = sum_valid_moves / n
     avg_total_moves = sum_total_moves / n
     print(runs_solved)
-    print(avg_valid_moves)
-    print(avg_total_moves)
+    print(f"average valid moves: {avg_valid_moves}")
+    print(f"average total moves: {avg_total_moves}")
 
 
 parser = argparse.ArgumentParser(description = "filepath")
