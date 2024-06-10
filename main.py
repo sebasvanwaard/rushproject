@@ -4,6 +4,7 @@ import numpy as np
 import board
 from experiment import Experiment
 import car
+import run_experiment
 
 def run_random_n_times(filename, n, stepsize=1000000):
     """
@@ -29,11 +30,12 @@ def run_random_n_times(filename, n, stepsize=1000000):
     print(f"average valid moves: {avg_valid_moves}")
     print(f"average total moves: {avg_total_moves}")
 
+run_experiment.random_experiment("gameboards/Rushhour6x6_1.csv", "experiments/random", n_experiment=100, max_moves=100000)
 
-parser = argparse.ArgumentParser(description = "filepath")
-parser.add_argument("board", help = "input file (csv)")
-args = parser.parse_args()
-filepath = args.board
+# parser = argparse.ArgumentParser(description = "filepath")
+# parser.add_argument("board", help = "input file (csv)")
+# args = parser.parse_args()
+# filepath = args.board
 
-# test.compare_pos_start_end_board()
-run_random_n_times(filepath, 30)
+# # test.compare_pos_start_end_board()
+# run_random_n_times(filepath, 30)
