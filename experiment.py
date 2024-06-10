@@ -42,13 +42,12 @@ class Experiment:
     def random_algorithm(self, n):
         """
         laat de board met auto's random stappen doen voor N keren of totdat het
-        een oplossing heeft, houdt bij hoeveel geldige stappen
-        dit 10,30,50 keer doen en avg stappen bepalen maybe histogram
+        een oplossing heeft
         """
         car_names = list(self.board.cars.keys())
         step_choices = [1, -1]
         moves = []
-
+        solved = False
         self.board.draw(print_in_terminal=True)
 
         valid_moves = 0
@@ -61,14 +60,16 @@ class Experiment:
                 self.board.draw(print_in_terminal=False)
 
                 valid_moves += 1
-            
+
             if self.board.cars['X'].column == self.board.shape - 2:
                 print("Solved!!")
+                solved = True
                 break
 
             total_moves += 1
-        
+
         self.board.draw(print_in_terminal=True)
         self.print_end_output()
         print(f"valid moves: {valid_moves}")
         print(f"total moves: {total_moves}")
+        return solved, valid_moves, total_moves
