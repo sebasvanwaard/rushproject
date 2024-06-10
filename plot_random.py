@@ -13,4 +13,4 @@ def plot_random_csv(csv):
     plt.hist(df['valid_moves'], bins=50, edgecolor='black')
     plt.show()
 
-plot_random_csv('experiments/random/Rushhour6x6_1.csv')
+# plot_random_csv('experiments/random/Rushhour6x6_1.csv')

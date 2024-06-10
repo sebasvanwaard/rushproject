@@ -1,36 +1,9 @@
-import pandas as pd
-import argparse
-import numpy as np
-import board
-from experiment import Experiment
-import car
+
+
+
 import run_experiment
 
-def run_random_n_times(filename, n, stepsize=1000000):
-    """
-    houdt bij hoeveel geldige stappen
-    dit 10,30,50 keer doen en avg stappen bepalen maybe histogram
-    """
-    sum_valid_moves = 0
-    sum_total_moves = 0
-    runs_solved = {}
-    
-    for runs in range(n):
-        test = Experiment(filepath)
-
-        solved, valid_moves, total_moves = test.random_algorithm(stepsize)
-        runs_solved[runs] = solved
-        sum_valid_moves += valid_moves
-        sum_total_moves += total_moves
-        
-    avg_valid_moves = sum_valid_moves / n
-    avg_total_moves = sum_total_moves / n
-    
-    print(runs_solved)
-    print(f"average valid moves: {avg_valid_moves}")
-    print(f"average total moves: {avg_total_moves}")
-
-run_experiment.random_experiment("gameboards/Rushhour6x6_1.csv", "experiments/random", n_experiment=100, max_moves=100000)
+run_experiment.run_all_boards("gameboards", "experiments/random2", n_experiment=1, max_moves=10)
 
 # parser = argparse.ArgumentParser(description = "filepath")
 # parser.add_argument("board", help = "input file (csv)")

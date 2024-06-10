@@ -10,6 +10,7 @@ import random
 class Experiment:
     def __init__(self, filename):
         self.board = Board(self.get_shape(filename), self.read_file(filename))
+        self.starting_board = copy.deepcopy(self.board)
         # self.read_file(filename)
         # self.get_shape(filename)
 
@@ -39,7 +40,7 @@ class Experiment:
         output_df = pd.DataFrame.from_dict(output, orient='index', columns=['move'])
         print(output_df)
 
-    def random_algorithm(self, n):
+    def random_algorithm(self, n, print_states = False, print_end_output=False):
         """
         laat de board met auto's random stappen doen voor N keren of totdat het
         een oplossing heeft
@@ -48,7 +49,7 @@ class Experiment:
         step_choices = [1, -1]
         moves = []
         solved = False
-        self.board.draw(print_in_terminal=True)
+        self.board.draw(print_in_terminal=print_states)
 
         valid_moves = 0
         total_moves = 0
@@ -62,14 +63,17 @@ class Experiment:
                 valid_moves += 1
 
             if self.board.cars['X'].column == self.board.shape - 2:
-                print("Solved!!")
                 solved = True
                 break
 
             total_moves += 1
 
-        self.board.draw(print_in_terminal=True)
-        self.print_end_output()
-        print(f"valid moves: {valid_moves}")
-        print(f"total moves: {total_moves}")
+        self.board.draw(print_in_terminal=print_states)
+        if print_end_output:
+            self.print_end_output()
+            print(f"valid moves: {valid_moves}")
+            print(f"total moves: {total_moves}")
         return solved, valid_moves, total_moves
+    
+    def reset_board(self):
+        self.board = copy.deepcopy(self.starting_board)
