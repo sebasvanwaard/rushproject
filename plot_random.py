@@ -26,9 +26,9 @@ def plot_random_csv(csv):
 
     plt.legend()
 
-    current_directory = os.path.dirname(os.path.abspath(__file__))
+    data_directory = os.path.dirname(file_path)
     plot_filename = f"{os.path.splitext(os.path.basename(file_path))[0]}_plot.png"
-    save_path = os.path.join(current_directory, plot_filename)
+    save_path = os.path.join(data_directory, plot_filename)
     plt.savefig(save_path)
 
     plt.show()
