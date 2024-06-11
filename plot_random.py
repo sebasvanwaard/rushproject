@@ -41,7 +41,7 @@ def plot_random_csv(csv):
 directory = 'experiments/random'
 
 for file in os.listdir(directory):
-    if file.endswith('.csv'):  # Only process CSV files
+    if file.endswith('.csv'):
         file_path = os.path.join(directory, file)
         plot_random_csv(file_path)
 
