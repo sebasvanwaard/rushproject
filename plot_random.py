@@ -9,7 +9,7 @@ def plot_random_csv(csv):
 
     df = pd.read_csv(csv)
 
-    # print(df)
+    print(df)
 
     number_of_iterations = max(df['iteration'])
     average_moves = df['valid_moves'].mean()
@@ -27,4 +27,4 @@ def plot_random_csv(csv):
 
     plt.show()
 
-plot_random_csv('experiments/random/Rushhour6x6_1.csv')
+plot_random_csv('experiments/random2/solved_Rushhour12x12_7.csv')
