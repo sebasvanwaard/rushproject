@@ -1,99 +1,63 @@
 import pandas as pd
 import copy
+import os
+import csv
+
+
 from .game.board import *
+from .algorithms.randomize import *
 
 import random
 
 
 class Experiment:
     def __init__(self, filename):
-        self.board = Board(self.get_shape(filename), self.read_file(filename))
+        self.board = Board(filename)
         self.starting_board = copy.deepcopy(self.board)
-        # self.read_file(filename)
-        # self.get_shape(filename)
+        self.gameboard_filename = filename
 
-    def read_file(self, filename):
-        """
-		Read a file containing car information for the starting position of a game of rush hour
-		args:
-			filename: the path to the file containing the info
-		returns:
-			a df/list/dict containing the car information
-		"""
-        df = pd.read_csv(filename)
-        return df
+    def run_experiment(self, algorithms, n, random_max_moves=100000):
+        for algorithm in algorithms:
 
-    def get_shape(self, filename):
-        """
-        Parse the shape of the board from the filename (has to be present in the name seperated by x)
-        args:
-            filename: the name of the board file
-        return:
-            the dimension (int)
-        """
-        name = filename.split('/')[-1].split('x')[0]
-        numbers_lst = [s for s in name if s.isdigit()]
-        shape = int(''.join(numbers_lst))
+            if algorithm == "randomize":
+                random_data = []
+                for iteration in range(1, n + 1):
+                    solved, valid_moves, total_moves, _ = self.run_random(n, random_max_moves)
+                    iteration_data = {"iteration": iteration, "solved": solved, "valid_moves": valid_moves, "total_moves": total_moves}
+                    random_data.append(iteration_data)
 
-        return shape
+                self.data_to_csv(random_data, self.gameboard_filename, "experiments/random")
 
-    def print_end_output(self):
-        """
-        Print the differences between the initial and final car positions on the board
-        args:
-            None
-        returns:
-            None
-        """
-        output = {}
-        for car in self.board.cars.values():
-            output[car.name] = car.moves
-        output_df = pd.DataFrame.from_dict(output, orient='index', columns=['move'])
-        print(output_df)
+    def run_random(self, max_moves=100000):
+            return random_algorithm(copy.deepcopy(self.board), max_moves)
 
-    def random_algorithm(self, n, print_states = False, print_end_output=False):
-        """
-        laat de board met auto's random stappen doen voor N keren of totdat het
-        een oplossing heeft
-        args:
-            n: max amount of valid moves that can be made
-            print_states: print the initial an final state of the board
-            print_end_output: print the difference between starting and ending positions of cars, as well as the total valid and total attempted moves
-        """
-        car_names = list(self.board.cars.keys())
-        step_choices = [1, -1]
-        moves = []
-        solved = False
-        self.board.draw(print_in_terminal=print_states)
+    def run_astar(self):
+        pass
 
-        valid_moves = 0
-        total_moves = 0
+    def run_breadth(self):
+        pass
 
-        # probeer een n moves te maken
-        while valid_moves < n:
-            car = self.board.cars[car_names[random.randint(0, len(car_names)-1)]]
-            step = random.choice(step_choices)
-            # maak move, als dit succesvol append naar moves en update het board. Tel een valid move
-            if car.move(step, self.board.board):
-                moves.append((car.name, step))
-                self.board.draw(print_in_terminal=False)
-                valid_moves += 1
+    def depth(self):
+        pass
 
-            # als de rode auto op de uit positie is het spel is klaar
-            if self.board.cars['X'].column == self.board.shape - 2:
-                solved = True
-                break
+    def data_to_csv(self, data, gameboard_file, experiment_dir):
+        fields = list(data[0].keys())
 
-            total_moves += 1
+        if not os.path.isdir(experiment_dir):
+            os.mkdir(experiment_dir)
 
-        # print de final output (als dit aangegeven is als arg)
-        self.board.draw(print_in_terminal=print_states)
-        if print_end_output:
-            self.print_end_output()
-            print(f"valid moves: {valid_moves}")
-            print(f"total moves: {total_moves}")
-        
-        return solved, valid_moves, total_moves
+        if os.path.isfile(f"{experiment_dir}/solved_{gameboard_file.split('/')[-1]}"):
+            overwrite = input(f"{experiment_dir}/solved_{gameboard_file.split('/')[-1]} already exists. Overwrite current file? (y/n)")
+            if overwrite != 'y':
+                print("Cancelled")
+                return
+
+        with open(f"{experiment_dir}/solved_{gameboard_file.split('/')[-1]}", 'w') as output:
+            writer = csv.DictWriter(output, fieldnames=fields)
+            writer.writeheader()
+
+            for dict in data:
+                writer.writerow(dict)
 
     def reset_board(self):
         self.board = copy.deepcopy(self.starting_board)

@@ -1,2 +1,6 @@
 iteration,solved,valid_moves,total_moves
-1,True,20726,114888
+1,False,10,47
+2,False,10,56
+3,False,10,46
+4,False,10,46
+5,False,10,72

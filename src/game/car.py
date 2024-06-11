@@ -4,14 +4,13 @@ import numpy as np
 
 
 class Car:
-	def __init__(self, name, column, row, length, orientation):
+	def __init__(self, name, x_pos, y_pos, length, orientation):
 
 		self.name = name
-		self.column = column
-		self.row = row
+		self.x_pos = x_pos
+		self.y_pos = y_pos
 		self.length = length
 		self.orientation = orientation
-		self.moves = 0
 
 	def move(self, steps, board):
 
@@ -19,49 +18,46 @@ class Car:
 		if self.orientation == 'H':
 
 			# dont move horizontal cars of the board
-			if (self.column + steps) > (board.shape[0] - self.length) or (self.column + steps) < 0:
+			if (self.x_pos + steps) > (board.shape[0] - self.length) or (self.x_pos + steps) < 0:
 				return False
 
 			# dont move horizontal cars if another car is in that place otherwise move the car
 			if steps > 0:
 				for i in range(1, steps + 1):
-					if board[self.row, (self.column + self.length - 1 + i)] != '.':
+					if board[self.y_pos, (self.x_pos + self.length - 1 + i)] != '.':
 						return False
 				else:
-					self.column += steps
-					self.moves += steps
+					self.x_pos += steps
 
 			else:
 				for i in range(steps, 0):
-					if board[self.row, (self.column + i)] != '.':
+					if board[self.y_pos, (self.x_pos + i)] != '.':
 						return False
 				else:
-					self.column += steps
-					self.moves += steps
+					self.x_pos += steps
 
 
 		# move vehicles with vertical orientation
 		if self.orientation == 'V':
 
 			# dont move vertical cars of the board
-			if (self.row + steps) > (board.shape[0] - self.length) or (self.row + steps) < 0:
+			if (self.y_pos + steps) > (board.shape[0] - self.length) or (self.y_pos + steps) < 0:
 				return False
 
 			# dont move vertical cars if another vehicle is in that place otherwise move the car
 			if steps > 0:
 				for i in range(1, steps + 1):
-					if board[(self.row + self.length - 1 + i), self.column] != '.':
+					if board[(self.y_pos + self.length - 1 + i), self.x_pos] != '.':
 						return False
 				else:
-					self.row += steps
-					self.moves += steps
+					self.y_pos += steps
+
 
 			else:
 				for i in range(steps, 0):
-					if board[(self.row + i), self.column] != '.':
+					if board[(self.y_pos + i), self.x_pos] != '.':
 						return False
 				else:
-					self.row += steps
-					self.moves += steps
+					self.y_pos += steps
 					
 		return True

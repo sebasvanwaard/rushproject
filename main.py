@@ -1,7 +1,12 @@
 
 from src import run_experiment
+from src.experiment import *
 
-run_experiment.random_experiment("gameboards/Rushhour6x6_1.csv", "experiments/random", n_experiment=1)
+test = Experiment("gameboards/Rushhour6x6_1.csv")
+
+test.run_experiment(["randomize"], n=5, random_max_moves=10)
+
+# run_experiment.random_experiment("gameboards/Rushhour6x6_1.csv", "experiments/random", n_experiment=1)
 
 # run_experiment.run_all_boards("gameboards", "experiments/random", n_experiment=1000, max_moves=250000)
 
