@@ -21,6 +21,12 @@ def write_data_dict(data, experiment_dir, gameboard_file):
 	if not os.path.isdir(experiment_dir):
 		os.mkdir(experiment_dir)
 
+	if os.path.isfile(f"{experiment_dir}/solved_{gameboard_file.split('/')[-1]}"):
+		overwrite = input(f"{experiment_dir}/solved_{gameboard_file.split('/')[-1]} already exists. Overwrite current file? (y/n)")
+		if overwrite != 'y':
+			print("Cancelled")
+			return
+
 	with open(f"{experiment_dir}/solved_{gameboard_file.split('/')[-1]}", 'w') as output:
 		writer = csv.DictWriter(output, fieldnames=fields)
 		writer.writeheader()
