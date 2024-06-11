@@ -18,7 +18,9 @@ def plot_random_csv(csv):
     sns.histplot(df['valid_moves'], bins=50, edgecolor='black', color='blue')
     sns.histplot(df['valid_moves'], bins=50, kde=True, color='red', linewidth=2, alpha=0)
 
-    plt.title(f'Distribution of the number of Valid Moves necessary \n to solve the puzzle with {number_of_iterations} Iterations with KDE line')
+    name_puzzle = os.path.splitext(os.path.basename(file_path))[0]
+
+    plt.title(f'Distribution of the number of Valid Moves necessary \n to solve the {name_puzzle} with {number_of_iterations} Iterations with KDE line')
     plt.xlabel('Valid Moves')
     plt.ylabel('Frequency')
 
@@ -27,7 +29,7 @@ def plot_random_csv(csv):
     plt.legend()
 
     data_directory = os.path.dirname(file_path)
-    plot_filename = f"{os.path.splitext(os.path.basename(file_path))[0]}_plot.png"
+    plot_filename = f"{name_puzzle}_plot.png"
     save_path = os.path.join(data_directory, plot_filename)
     plt.savefig(save_path)
 
