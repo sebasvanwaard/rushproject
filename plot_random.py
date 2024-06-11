@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+import os
 
 def plot_random_csv(csv):
     """
@@ -25,6 +26,21 @@ def plot_random_csv(csv):
 
     plt.legend()
 
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    plot_filename = f"{os.path.splitext(os.path.basename(file_path))[0]}_plot.png"
+    save_path = os.path.join(current_directory, plot_filename)
+    plt.savefig(save_path)
+
     plt.show()
 
-plot_random_csv('experiments/random2/solved_Rushhour12x12_7.csv')
+    plt.clf()
+
+
+directory = 'experiments/random'
+
+for file in os.listdir(directory):
+    if file.endswith('.csv'):  # Only process CSV files
+        file_path = os.path.join(directory, file)
+        plot_random_csv(file_path)
+
+# plot_random_csv('experiments/random2/solved_Rushhour12x12_7.csv')
