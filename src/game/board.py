@@ -92,5 +92,7 @@ class Board:
             
             ax.add_patch(rectangle)
             
+    def get_unique_id(self):
+        return np.array2string(self.grid)
         
         plt.show()
