@@ -21,11 +21,12 @@ class Experiment:
             if algorithm == "randomize":
                 random_data = []
                 for iteration in range(1, n + 1):
-                    solved, valid_moves, total_moves, _ = self.run_random(n, random_max_moves)
+                    print(iteration)
+                    solved, valid_moves, total_moves, _ = self.run_random(random_max_moves)
                     iteration_data = {"iteration": iteration, "solved": solved, "valid_moves": valid_moves, "total_moves": total_moves}
                     random_data.append(iteration_data)
 
-                self.data_to_csv(random_data, self.gameboard_filename, "experiments/random")
+                self.data_to_csv(random_data, self.gameboard_filename, f"experiments/data/{algorithm}")
 
     def run_random(self, max_moves=100000):
             return random_algorithm(copy.deepcopy(self.board), max_moves)

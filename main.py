@@ -3,7 +3,7 @@ from src.experiment import *
 
 test = Experiment("gameboards/Rushhour12x12_7.csv")
 
-test.board.plot()
+test.run_experiment(["randomize"], n=5, random_max_moves=10)
 
 # run_experiment.random_experiment("gameboards/Rushhour12x12_1.csv", "experiments/random", n_experiment=1)
 
