@@ -3,7 +3,6 @@ import copy
 import os
 import csv
 
-
 from .game.board import *
 from .algorithms.randomize import *
 
@@ -37,7 +36,7 @@ class Experiment:
     def run_breadth(self):
         pass
 
-    def depth(self):
+    def run_depth(self):
         pass
 
     def data_to_csv(self, data, gameboard_file, experiment_dir):
