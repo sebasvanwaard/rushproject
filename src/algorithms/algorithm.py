@@ -8,6 +8,13 @@ class Algorithm:
         self.state_archive = set([])
 
     def get_actions(self, board):
+        """
+        Get the possible next game states for 'board'.
+        args:
+            board: the board you want to find the possible game states for
+        return:
+            possible_gamestates: a list of boards that are direct possible next gamestates for the initial board
+        """
         possible_gamestates = []
 
         for car in board.cars.values():

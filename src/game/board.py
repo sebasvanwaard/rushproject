@@ -73,7 +73,9 @@ class Board:
         print(self.grid)
 
     def plot(self):
-        
+        """
+        plot the current gamestate using pyplot.
+        """
         fig, ax = plt.subplots()
         ax.plot()
 

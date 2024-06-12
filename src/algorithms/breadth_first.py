@@ -8,6 +8,15 @@ class Breadth_first(Algorithm):
 		super().__init__(board)
 
 	def run(self, max_depth=math.inf):
+		"""
+		run a breadth first search for a solution of the given board.
+		args:
+			max_depth: the maximum depth the algorithm will search before giving up. Defaults to math.inf
+		returns:
+			state: the board of the final state
+			moves: the total moves needed to solve the board
+			total_states: the total amount of states visited before the solution was found
+		"""
 		possible_states = [copy.deepcopy(self.board)]
 		temp_states = []
 		moves = 0
