@@ -1,10 +1,9 @@
 
-from src import run_experiment
 from src.experiment import *
 
-test = Experiment("gameboards/Rushhour6x6_1.csv")
+test = Experiment("gameboards/Rushhour9x9_6.csv")
 
-test.run_experiment(["randomize"], n=5, random_max_moves=10)
+test.run_experiment(["randomize"], n=1000, random_max_moves=500000)
 
 # run_experiment.random_experiment("gameboards/Rushhour6x6_1.csv", "experiments/random", n_experiment=1)
 
