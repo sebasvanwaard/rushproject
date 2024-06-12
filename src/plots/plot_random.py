@@ -28,9 +28,9 @@ def plot_random_csv(csv):
 
     plt.legend()
 
-    data_directory = os.path.dirname(file_path)
+    plot_directory = '../../experiments/plots/randomize'
     plot_filename = f"{name_puzzle}_plot.png"
-    save_path = os.path.join(data_directory, plot_filename)
+    save_path = os.path.join(plot_directory, plot_filename)
     plt.savefig(save_path)
 
     plt.show()
@@ -38,11 +38,9 @@ def plot_random_csv(csv):
     plt.clf()
 
 
-directory = '../../experiments/random'
+directory = '../../experiments/data/randomize'
 
 for file in os.listdir(directory):
-    if file.endswith('.csv'):  # Only process CSV files
+    if file.endswith('.csv'):  
         file_path = os.path.join(directory, file)
         plot_random_csv(file_path)
-
-# plot_random_csv('experiments/random2/solved_Rushhour12x12_7.csv')
