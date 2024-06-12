@@ -41,9 +41,6 @@ class Algorithm:
 
         return possible_gamestates
 
-    def get_unique_id(self):
-        self.unique_id = self.board.tostring()
-
     def run(self):
         pass
 
