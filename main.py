@@ -1,7 +1,7 @@
 
 from src.experiment import *
 
-test = Experiment("gameboards/Rushhour9x9_6.csv")
+test = Experiment("gameboards/Rushhour12x12_7.csv")
 
 test.run_experiment(["randomize"], n=1000, random_max_moves=500000)
 
