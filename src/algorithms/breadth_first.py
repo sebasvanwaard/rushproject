@@ -6,7 +6,6 @@ import math
 class Breadth_first(Algorithm):
 	def __init__(self, board):
 		super().__init__(board)
-		self.state_archive = set([])
 
 	def run(self, max_depth=math.inf):
 		possible_states = [copy.deepcopy(self.board)]
