@@ -1,5 +1,8 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import random
 
 from .car import *
 
@@ -68,3 +71,26 @@ class Board:
 
     def draw(self):
         print(self.grid)
+
+    def plot(self):
+        
+        fig, ax = plt.subplots()
+        ax.plot()
+
+        ax.set_xlim(right=self.shape)
+        ax.set_ylim(top=self.shape)
+
+        for car in self.cars.values():
+            rectangle = None
+            color = "#00" + f"{format(random.randrange(0, 16**8), '08x')}"[2:]
+            if car.name == 'X':
+                color = "#FF0000"
+            if car.orientation == "H":
+                rectangle = patches.Rectangle((car.x_pos, car.y_pos), car.length, 1, edgecolor = 'black', facecolor = color)
+            else:
+                rectangle = patches.Rectangle((car.x_pos, car.y_pos), 1, car.length, edgecolor = 'black', facecolor = color)
+            
+            ax.add_patch(rectangle)
+            
+        
+        plt.show()
