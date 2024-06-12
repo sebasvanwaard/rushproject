@@ -21,7 +21,7 @@ python main.py gameboards/Rushhour6x6_1.csv
 
 ## Structuur
 UML
-![alt text](https://url/to/img.png)
+![alt text](https://github.com/sebasvanwaard/rushproject/blob/main/UML.png)
 
 
 De lijst hieronder beschrijft de belangrijkste mappen en files in het project, en waar je ze kan vinden:
