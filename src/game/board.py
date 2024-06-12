@@ -78,7 +78,7 @@ class Board:
         ax.plot()
 
         ax.set_xlim(right=self.shape)
-        ax.set_ylim(top=self.shape)
+        ax.set_ylim(bottom=self.shape)
 
         for car in self.cars.values():
             rectangle = None
