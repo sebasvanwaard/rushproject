@@ -1,5 +1,4 @@
 import pandas as pd
-import argparse
 import numpy as np
 
 from .car import *

@@ -20,6 +20,10 @@ python main.py gameboards/Rushhour6x6_1.csv
 
 
 ## Structuur
+UML
+![alt text](https://url/to/img.png)
+
+
 De lijst hieronder beschrijft de belangrijkste mappen en files in het project, en waar je ze kan vinden:
 - **/gameboards**: bevat de verschillende databestanden die de informatie bevatten hoe de auto's in de startsituatie staan. 
 
