@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import copy
 
 class Algorithm:
     def __init__(self, board, cars):
@@ -53,6 +54,33 @@ class Algorithm:
         
         # for copie in range(copies):
         #     copy.deepcopy(self.board)
+
+        def get_actions(self, board):
+            possible_gamestates = []
+
+            for car in board.cars:
+                if car.orientation == "H":
+                    if board.grid[car.x_pos - 1, car.y_pos] == ".":
+                        board_copy = copy.deepcopy(board)
+                        board_copy.cars[car.name].move(-1)
+                        possible_gamestates.append(board_copy)
+                    if board.grid(car.x_pos + car.length, car.y_pos) == ".":
+                        board_copy = copy.deepcopy(board)
+                        board_copy.cars[car.name].move(1)
+                        possible_gamestates.append(board_copy)
+                
+                if car.orientation == "V":
+                    if board.grid[car.x_pos, car.y_pos - 1] == ".":
+                        board_copy = copy.deepcopy(board)
+                        board_copy.cars[car.name].move(-1)
+                        possible_gamestates.append(board_copy)
+                    if board.grid(car.x_pos, car.y_pos + car.length) == ".":
+                        board_copy = copy.deepcopy(board)
+                        board_copy.cars[car.name].move(1)
+                        possible_gamestates.append(board_copy)
+                
+
+            return possible_gamestates
 
     def get_unique_id(self):
         self.unique_id = self.board.tostring()
