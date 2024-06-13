@@ -41,7 +41,7 @@ class Board:
 
 
     def load_cars(self):
-        
+
         cars = {}
 
         for _, car in self.car_info.iterrows():
@@ -66,16 +66,14 @@ class Board:
             else:
                 for i in range(car.length):
                     self.grid[car.y_pos + i, car.x_pos] = car.name
-        
+
         return self.grid
 
     def draw(self):
         print(self.grid)
 
     def plot(self):
-        """
-        plot the current gamestate using pyplot.
-        """
+        
         fig, ax = plt.subplots()
         ax.plot()
 
@@ -91,10 +89,11 @@ class Board:
                 rectangle = patches.Rectangle((car.x_pos, car.y_pos), car.length, 1, edgecolor = 'black', facecolor = color)
             else:
                 rectangle = patches.Rectangle((car.x_pos, car.y_pos), 1, car.length, edgecolor = 'black', facecolor = color)
-            
+
             ax.add_patch(rectangle)
-            
+
+        plt.show()
+        
     def get_unique_id(self):
         return np.array2string(self.grid)
-        
-        plt.show()
+        return np.array2string(self.grid)

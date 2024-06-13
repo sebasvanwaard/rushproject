@@ -5,7 +5,7 @@ import copy
 class Algorithm:
     def __init__(self, board):
         self.board = board
-        self.state_archive = set([])
+        self.state_archive = set([self.board])
 
     def get_actions(self, board):
         """
@@ -47,9 +47,6 @@ class Algorithm:
                     possible_gamestates.append(board_copy)
 
         return possible_gamestates
-
-    def get_unique_id(self):
-        self.unique_id = self.board.tostring()
 
     def run(self):
         pass
