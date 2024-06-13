@@ -20,7 +20,7 @@ from src.algorithms import breadth_first
 # run_random_n_times(filepath, 30)
 
 
-test_board = Board("gameboards/Rushhour12x12_7.csv")
+test_board = Board("gameboards/Rushhour6x6_1.csv")
 
 test_algorithm = breadth_first.Breadth_first(test_board)
 
@@ -28,4 +28,3 @@ final_board, total_moves, total_states = test_algorithm.run(max_depth=100)
 
 print(f"total moves: {total_moves}, total states: {total_states}")
 final_board.plot()
-
