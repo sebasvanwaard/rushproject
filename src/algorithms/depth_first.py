@@ -17,17 +17,21 @@ class Depth_first(Algorithm):
 
         while moves < max_depth:
             state = stack.pop()
-            if state.cars['x'].x_pos == goal_state:
+            print(len(stack))
+            
+            if state.cars['X'].x_pos == goal_state:
                 print("joepie")
                 return (state, moves, total_states)
+            
             for possible_state in self.get_actions(state):
                 total_states += 1
                 unique_id = possible_state.get_unique_id()
                 if unique_id not in self.state_archive:
                     self.state_archive.add(unique_id)
                     stack.append(possible_state)
+
             moves += 1
 
         print(f"no solution found within {max_depth} moves")
 
-    	return False
+        return False
