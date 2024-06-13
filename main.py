@@ -2,6 +2,7 @@
 from src.experiment import *
 from src.game import *
 from src.algorithms import breadth_first
+from src.algorithms import depth_first
 
 # test = Experiment("gameboards/Rushhour12x12_7.csv")
 
@@ -20,10 +21,10 @@ from src.algorithms import breadth_first
 # run_random_n_times(filepath, 30)
 
 
-test_board = Board("gameboards/Rushhour9x9_4.csv")
+test_board = Board("gameboards/Rushhour6x6_1.csv")
 
-test_algorithm = breadth_first.Breadth_first(test_board)
-
+# test_algorithm = breadth_first.Breadth_first(test_board)
+test_algorithm = depth_first.Depth_first(test_board)
 final_board, total_moves, total_states = test_algorithm.run(max_depth=100)
 
 print(f"total moves: {total_moves}, total states: {total_states}")
