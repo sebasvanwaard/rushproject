@@ -96,4 +96,3 @@ class Board:
 
     def get_unique_id(self):
         return np.array2string(self.grid)
-        return np.array2string(self.grid)

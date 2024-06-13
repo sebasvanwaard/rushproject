@@ -25,7 +25,7 @@ test_board = Board("gameboards/Rushhour6x6_1.csv")
 
 # test_algorithm = breadth_first.Breadth_first(test_board)
 test_algorithm = depth_first.Depth_first(test_board)
-final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run(max_depth=100)
+final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
 
 print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
 final_board.plot()
