@@ -18,8 +18,8 @@ class Depth_first(Algorithm):
         while len(stack) > 0:
             state = stack.pop()
             total_states_used += 1
-            print(len(stack))
             print(f"depth =  {state.depth}")
+            # print(len(stack))
 
             if state.cars['X'].x_pos == goal_state:
                 print("joepie")
@@ -32,7 +32,6 @@ class Depth_first(Algorithm):
                     if unique_id not in self.state_archive:
                         self.state_archive.add(unique_id)
                         stack.append(possible_state)
-
 
         print(f"no solution found within {max_depth} depth")
 
