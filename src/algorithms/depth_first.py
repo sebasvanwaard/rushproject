@@ -12,7 +12,6 @@ class Depth_first(Algorithm):
 
         start_state = copy.deepcopy(self.board)
         stack = [start_state]
-        depth = 0
         total_states_used = 0
         total_states_generated = 0
 
@@ -20,12 +19,13 @@ class Depth_first(Algorithm):
             state = stack.pop()
             total_states_used += 1
             print(len(stack))
+            print(f"depth =  {state.depth}")
 
             if state.cars['X'].x_pos == goal_state:
                 print("joepie")
-                return (state, depth, total_states_used, total_states_generated)
-            
-            if depth <= max_depth:
+                return (state, state.depth, total_states_used, total_states_generated)
+
+            if state.depth < max_depth:
                 for possible_state in self.get_actions(state):
                     total_states_generated += 1
                     unique_id = possible_state.get_unique_id()
@@ -33,8 +33,7 @@ class Depth_first(Algorithm):
                         self.state_archive.add(unique_id)
                         stack.append(possible_state)
 
-                depth += 1
 
-        print(f"no solution found within {max_depth} moves")
+        print(f"no solution found within {max_depth} depth")
 
         return False
