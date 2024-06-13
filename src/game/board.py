@@ -13,6 +13,7 @@ class Board:
         self.car_info = self.read_file(filename)
         self.cars = self.load_cars()
         self.grid = self.update()
+        self.depth = 0
 
     def read_file(self, filename):
         """
@@ -73,7 +74,7 @@ class Board:
         print(self.grid)
 
     def plot(self):
-        
+
         fig, ax = plt.subplots()
         ax.plot()
 
@@ -93,7 +94,7 @@ class Board:
             ax.add_patch(rectangle)
 
         plt.show()
-        
+
     def get_unique_id(self):
         return np.array2string(self.grid)
         return np.array2string(self.grid)

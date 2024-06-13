@@ -21,6 +21,7 @@ class Algorithm:
             if car.orientation == "H" and car.x_pos - 1 >= 0:
                 if board.grid[car.y_pos, car.x_pos - 1] == ".":
                     board_copy = copy.deepcopy(board)
+                    board_copy.depth += 1
                     board_copy.cars[car.name].x_pos -= 1
                     board_copy.update()
                     possible_gamestates.append(board_copy)
@@ -28,13 +29,15 @@ class Algorithm:
             if car.orientation == "H" and car.x_pos + car.length < board.shape:
                 if board.grid[car.y_pos, car.x_pos + car.length] == ".":
                     board_copy = copy.deepcopy(board)
+                    board_copy.depth += 1
                     board_copy.cars[car.name].x_pos += 1
                     board_copy.update()
                     possible_gamestates.append(board_copy)
-            
+
             if car.orientation == "V" and car.y_pos - 1 >= 0:
                 if board.grid[car.y_pos - 1, car.x_pos] == ".":
                     board_copy = copy.deepcopy(board)
+                    board_copy.depth += 1
                     board_copy.cars[car.name].y_pos -= 1
                     board_copy.update()
                     possible_gamestates.append(board_copy)
@@ -42,6 +45,7 @@ class Algorithm:
             if car.orientation == "V" and car.y_pos + car.length < board.shape:
                 if board.grid[car.y_pos + car.length, car.x_pos] == ".":
                     board_copy = copy.deepcopy(board)
+                    board_copy.depth += 1
                     board_copy.cars[car.name].y_pos += 1
                     board_copy.update()
                     possible_gamestates.append(board_copy)
@@ -56,4 +60,3 @@ class Algorithm:
 
     def reset():
         pass
-
