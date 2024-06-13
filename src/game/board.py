@@ -14,6 +14,7 @@ class Board:
         self.cars = self.load_cars()
         self.grid = self.update()
         self.depth = 0
+        self.moves = []
 
     def read_file(self, filename):
         """
