@@ -39,7 +39,6 @@ class Board:
 
         return shape
 
-
     def load_cars(self):
 
         cars = {}
