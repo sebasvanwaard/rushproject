@@ -17,16 +17,16 @@ class Breadth_first(Algorithm):
 		while moves < max_depth:
 			print(len(possible_states))
 			for state in possible_states:
-				unique_id = state.get_unique_id()
-				if unique_id not in self.state_archive:
-					self.state_archive.add(unique_id)
 					total_states += 1
 					if state.cars["X"].x_pos == goal_state:
 						print("joepie")
 						return (state, moves, total_states)
 
 					for possible_state in self.get_actions(state):
-						temp_states.append(possible_state)
+						unique_id = possible_state.get_unique_id()
+						if unique_id not in self.state_archive:
+							self.state_archive.add(unique_id)
+							temp_states.append(possible_state)
 
 			possible_states.clear()
 			possible_states = copy.deepcopy(temp_states)

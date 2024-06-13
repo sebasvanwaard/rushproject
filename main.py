@@ -20,7 +20,7 @@ from src.algorithms import breadth_first
 # run_random_n_times(filepath, 30)
 
 
-test_board = Board("gameboards/Rushhour6x6_1.csv")
+test_board = Board("gameboards/Rushhour9x9_4.csv")
 
 test_algorithm = breadth_first.Breadth_first(test_board)
 

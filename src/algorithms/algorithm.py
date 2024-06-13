@@ -5,7 +5,7 @@ import copy
 class Algorithm:
     def __init__(self, board):
         self.board = board
-        self.state_archive = set([])
+        self.state_archive = set([self.board])
 
     def get_actions(self, board):
         possible_gamestates = []
