@@ -91,6 +91,8 @@ class Board:
                 rectangle = patches.Rectangle((car.x_pos, car.y_pos), 1, car.length, edgecolor = 'black', facecolor = color)
 
             ax.add_patch(rectangle)
+
         plt.show()
+        
     def get_unique_id(self):
         return np.array2string(self.grid)
