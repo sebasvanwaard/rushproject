@@ -40,7 +40,7 @@ class A_star(Algorithm):
 
         cost = goal_state - state.cars["X"].x_pos
 
-        return 100 * cost
+        return cost
 
     def red_blocking_cost(self, state):
         cost = 0
@@ -49,7 +49,7 @@ class A_star(Algorithm):
             if state.grid[state.cars["X"].y_pos, i] != ".":
                 cost += 1
         
-        return 50 * cost
+        return cost
 
     def blocking_blocking_cost(self, state):
         blocking_cars = []
@@ -65,13 +65,14 @@ class A_star(Algorithm):
         else:
             for car in blocking_cars:
                 found_blocking_cars = []
+                temp_list = set()
                 while self.find_blocking_car(state, car):
-                    temp_list = set()
                     for i in self.find_blocking_car(state, car):
                         temp_list.add(i)
                    
                     if len(found_blocking_cars) == 0:
                         found_blocking_cars = temp_list
+                        temp_list = set()
                         cost += 1
 
                     car = found_blocking_cars.pop()

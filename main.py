@@ -78,7 +78,7 @@ from src.plots import visualize
 # visualize.visualize_moves(test_board, final_board.moves)
 
 # ---------------- a_star -----------------------
-test_board = Board("gameboards/Rushhour9x9_4.csv")
+test_board = Board("gameboards/Rushhour6x6_1.csv")
 
 test_algorithm = a_star.A_star(test_board)
 final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
