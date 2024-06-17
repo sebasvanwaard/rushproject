@@ -23,7 +23,7 @@ class Algorithm:
                     board_copy = copy.deepcopy(board)
                     board_copy.depth += 1
                     board_copy.cars[car.name].x_pos -= 1
-                    board_copy.moves.append([{car.name}, -1])
+                    board_copy.moves.append((car.name, -1))
                     board_copy.update()
                     possible_gamestates.append(board_copy)
 
@@ -32,7 +32,7 @@ class Algorithm:
                     board_copy = copy.deepcopy(board)
                     board_copy.depth += 1
                     board_copy.cars[car.name].x_pos += 1
-                    board_copy.moves.append([{car.name}, 1])
+                    board_copy.moves.append((car.name, 1))
                     board_copy.update()
                     possible_gamestates.append(board_copy)
 
@@ -41,7 +41,7 @@ class Algorithm:
                     board_copy = copy.deepcopy(board)
                     board_copy.depth += 1
                     board_copy.cars[car.name].y_pos -= 1
-                    board_copy.moves.append([{car.name}, -1])
+                    board_copy.moves.append((car.name, -1))
                     board_copy.update()
                     possible_gamestates.append(board_copy)
 
@@ -50,7 +50,7 @@ class Algorithm:
                     board_copy = copy.deepcopy(board)
                     board_copy.depth += 1
                     board_copy.cars[car.name].y_pos += 1
-                    board_copy.moves.append([{car.name}, 1])
+                    board_copy.moves.append((car.name, 1))
                     board_copy.update()
                     possible_gamestates.append(board_copy)
 

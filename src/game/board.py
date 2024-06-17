@@ -42,11 +42,14 @@ class Board:
         return shape
 
     def load_cars(self):
-
         cars = {}
 
         for _, car in self.car_info.iterrows():
-            cars[car['car']] = Car(car['car'], car['col'] - 1, car['row'] - 1, car['length'], car['orientation'])
+            color = "#00" + f"{format(random.randrange(0, 16**8), '08x')}"[2:]
+            if car['car'] == 'X':
+                color = "#FF0000"
+            
+            cars[car['car']] = Car(car['car'], car['col'] - 1, car['row'] - 1, car['length'], car['orientation'], color)
 
         return cars
 
@@ -73,7 +76,7 @@ class Board:
     def draw(self):
         print(self.grid)
 
-    def plot(self):
+    def plot(self, show=False):
 
         fig, ax = plt.subplots()
         ax.plot()
@@ -83,17 +86,18 @@ class Board:
 
         for car in self.cars.values():
             rectangle = None
-            color = "#00" + f"{format(random.randrange(0, 16**8), '08x')}"[2:]
-            if car.name == 'X':
-                color = "#FF0000"
+
             if car.orientation == "H":
-                rectangle = patches.Rectangle((car.x_pos, car.y_pos), car.length, 1, edgecolor = 'black', facecolor = color)
+                rectangle = patches.Rectangle((car.x_pos, car.y_pos), car.length, 1, edgecolor = 'black', facecolor = car.color)
             else:
-                rectangle = patches.Rectangle((car.x_pos, car.y_pos), 1, car.length, edgecolor = 'black', facecolor = color)
+                rectangle = patches.Rectangle((car.x_pos, car.y_pos), 1, car.length, edgecolor = 'black', facecolor = car.color)
 
             ax.add_patch(rectangle)
 
-        plt.show()
+        if show:
+            plt.show()
+        
+        return fig
 
     def get_unique_id(self):
         return np.array2string(self.grid)
