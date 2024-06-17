@@ -22,8 +22,8 @@ class Breadth_first(Algorithm):
 		possible_states.put(copy.deepcopy(self.board))
 
 		while not possible_states.empty():
+				print(possible_states.qsize())
 				state = possible_states.get()
-				# print(possible_states.qsize())
 				self.total_states_used += 1
 				if self.is_goal_state(state):
 					print("joepie")
@@ -31,7 +31,7 @@ class Breadth_first(Algorithm):
 
 				for possible_state in self.get_actions(state):
 					self.total_states_generated += 1
-					if self.is_in_archive(possible_state):
+					if not self.is_in_archive(possible_state):
 						possible_states.put(possible_state)
 
 		print(f"no solution found within {max_depth} moves")

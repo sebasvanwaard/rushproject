@@ -62,3 +62,32 @@ class Car:
 					self.y_pos += steps
 					
 		return True
+	
+	def simple_move(self, step):
+		if self.orientation == 'H':
+			self.x_pos += step
+		if self.orientation == 'V':
+			self.y_pos += step
+
+	def get_possible_moves(self, board_grid):
+		moves = []
+
+		if self.orientation == "H":
+			if not self.x_pos - 1 < 0:
+				if board_grid[self.y_pos, self.x_pos - 1] == '.':
+					moves.append(-1)
+
+			if not self.x_pos + self.length >= board_grid.shape[0]:
+				if board_grid[self.y_pos, self.x_pos + self.length] == '.':
+					moves.append(1)
+		
+		if self.orientation == 'V':
+			if not self.y_pos - 1 < 0:
+				if board_grid[self.y_pos - 1, self.x_pos] == '.':
+					moves.append(-1)
+					
+			if not self.y_pos + self.length >= board_grid.shape[0]:
+				if board_grid[self.y_pos + self.length, self.x_pos] == '.':
+					moves.append(1)
+			
+		return moves
