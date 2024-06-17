@@ -97,7 +97,7 @@ class Board:
         if show:
             plt.show()
         
-        return fig
+        return fig, ax
 
     def get_unique_id(self):
         return np.array2string(self.grid)

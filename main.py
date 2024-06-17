@@ -22,7 +22,7 @@ from src.plots import visualize
 # run_random_n_times(filepath, 30)
 
 
-test_board = Board("gameboards/Rushhour6x6_2.csv")
+test_board = Board("gameboards/Rushhour9x9_4.csv")
 
 test_algorithm = breadth_first.Breadth_first(test_board)
 # test_algorithm = depth_first.Depth_first(test_board)
@@ -32,4 +32,4 @@ print(f"total moves: {total_moves}, total states used: {total_states_used}, tota
 print(f"moves: {final_board.moves}")
 # final_board.plot()
 
-visualize.visualize_moves(test_board, final_board.moves)
+# visualize.visualize_moves(test_board, final_board.moves)

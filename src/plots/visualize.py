@@ -11,7 +11,7 @@ def visualize_moves(board, moves):
 		print(car_name, step)
 		board.cars[car_name].move(step, board.grid)
 		
-		fig = board.plot()
+		fig, _ = board.plot()
 		board.update()
 		fig.canvas.draw()
 		plt.pause(0.5)
