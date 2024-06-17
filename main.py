@@ -36,7 +36,7 @@ from src.plots import visualize
 #
 # visualize.visualize_moves(test_board, final_board.moves)
 
-
+# hoi
 # ----------------random_start_depth_first -----------------------
 test_board = Board("gameboards/Rushhour6x6_1.csv")
 
