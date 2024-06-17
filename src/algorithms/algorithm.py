@@ -5,7 +5,12 @@ import copy
 class Algorithm:
     def __init__(self, board):
         self.board = board
+
         self.state_archive = set([self.board])
+        self.state_dict = {}
+
+        self.total_states_used = 0
+        self.total_states_generated = 0
 
     def get_actions(self, board):
         """
@@ -56,10 +61,35 @@ class Algorithm:
 
         return possible_gamestates
 
-    def run(self):
-        pass
+    def is_in_archive(self, possible_state):
+        """
+        Check the archive of visited states to see if possible state is present, and if its depth is less than the depth of the visited state. Adds the state to be checked to the archive.
+        args:
+            state: the state to be checked
+        returns: True if the state is present in the archive and the visited state has a smaller depth. Returns False if the state to be checked is not present in the archive or if its depth is lower than the archived depth.
+        """
+        unique_id = possible_state.get_unique_id()
+        
+        if unique_id not in self.state_dict:
+            self.state_dict[unique_id] = possible_state.depth
+            return False
+        elif possible_state.depth < self.state_dict[unique_id]:
+            self.state_dict[unique_id] = possible_state.depth
+            return False
+        
+        return True
 
-    def prune():
+    def is_goal_state(self, state):
+        """
+        Check if state is a possible goal state.
+        args:
+            state: the board to be checked
+        returns:
+            True is state is a possible goal state, False if not
+        """
+        return state.cars['X'].x_pos == self.board.shape - 2
+
+    def run(self):
         pass
 
     def reset():
