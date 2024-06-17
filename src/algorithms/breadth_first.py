@@ -28,7 +28,7 @@ class Breadth_first(Algorithm):
 
 		while not possible_states.empty():
 				state = possible_states.get()
-				print(possible_states.qsize())
+				# print(possible_states.qsize())
 				total_states_used += 1
 				if state.cars["X"].x_pos == goal_state:
 					print("joepie")

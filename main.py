@@ -1,3 +1,4 @@
+import math
 
 from src.experiment import *
 from src.game import *
@@ -24,25 +25,50 @@ from src.plots import visualize
 # run_random_n_times(filepath, 30)
 
 # ----------------breadth_first -----------------------
-# test_board = Board("gameboards/Rushhour6x6_1.csv")
-#
+# test_board = Board("gameboards/Rushhour9x9_4.csv")
+
 # test_algorithm = breadth_first.Breadth_first(test_board)
 # # test_algorithm = depth_first.Depth_first(test_board)
 # final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
-#
+
 # print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
 # print(f"moves: {final_board.moves}")
 # # final_board.plot()
-#
+
 # visualize.visualize_moves(test_board, final_board.moves)
 
-# hoi
 # ----------------random_start_depth_first -----------------------
-test_board = Board("gameboards/Rushhour6x6_1.csv")
+# test_board = Board("gameboards/Rushhour6x6_1.csv")
 
-test_algorithm = depth_first.random_start_depth_first(test_board)
+# test_algorithm = depth_first.random_start_depth_first(test_board)
+# # test_algorithm = depth_first.Depth_first(test_board)
+# final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run(2)
+
+# print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
+# print(f"moves: {final_board.moves}")
+# final_board.plot()
+
+# visualize.visualize_moves(test_board, final_board.moves)
+
+# # ---------------- branch_n_bound_depth_first -----------------------
+# test_board = Board("gameboards/Rushhour9x9_4.csv")
+
+# test_algorithm = depth_first.branch_n_bound_depth_first(test_board)
+# # test_algorithm = depth_first.Depth_first(test_board)
+# final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run(math.inf, n_goal_state=200)
+
+# print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
+# print(f"moves: {final_board.moves}")
+# # final_board.plot()
+
+# # visualize.visualize_moves(test_board, final_board.moves)
+
+# ----------------iterative_deepening_depth_first -----------------------
+test_board = Board("gameboards/Rushhour9x9_4.csv")
+
+test_algorithm = iterative_deepening.Iterative_deepening_with_archive(test_board)
 # test_algorithm = depth_first.Depth_first(test_board)
-final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run(2)
+final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run(200)
 
 print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
 print(f"moves: {final_board.moves}")
