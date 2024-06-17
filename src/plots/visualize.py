@@ -14,6 +14,7 @@ def visualize_moves(board, moves):
 		fig = board.plot()
 		board.update()
 		fig.canvas.draw()
+		plt.pause(0.5)
 		fig.canvas.flush_events()
 		plt.close()
 	
