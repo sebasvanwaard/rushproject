@@ -4,6 +4,7 @@ from src.experiment import *
 from src.game import *
 from src.algorithms import breadth_first
 from src.algorithms import depth_first
+from src.algorithms import a_star
 from src.algorithms import iterative_deepening
 
 from src.plots import visualize
@@ -64,11 +65,23 @@ from src.plots import visualize
 # # visualize.visualize_moves(test_board, final_board.moves)
 
 # ----------------iterative_deepening_depth_first -----------------------
+# test_board = Board("gameboards/Rushhour9x9_4.csv")
+
+# test_algorithm = iterative_deepening.Iterative_deepening_with_archive(test_board)
+# # test_algorithm = depth_first.Depth_first(test_board)
+# final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run(200)
+
+# print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
+# print(f"moves: {final_board.moves}")
+# final_board.plot()
+
+# visualize.visualize_moves(test_board, final_board.moves)
+
+# ---------------- a_star -----------------------
 test_board = Board("gameboards/Rushhour9x9_4.csv")
 
-test_algorithm = iterative_deepening.Iterative_deepening_with_archive(test_board)
-# test_algorithm = depth_first.Depth_first(test_board)
-final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run(200)
+test_algorithm = a_star.A_star(test_board)
+final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
 
 print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
 print(f"moves: {final_board.moves}")
