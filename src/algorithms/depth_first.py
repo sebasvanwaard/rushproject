@@ -15,7 +15,7 @@ class Depth_first(Algorithm):
         while len(stack) > 0:
             state = stack.pop()
             self.total_states_used += 1
-            print(f"depth =  {state.depth}")
+            # print(f"depth =  {state.depth}")
             # print(len(stack))
 
             if self.is_goal_state(state):
@@ -48,8 +48,8 @@ class random_start_depth_first(Algorithm):
         possible_states = []
         while len(stack) > 0:
             state = stack.pop()
-            total_states_used += 1
-            print(f"depth =  {state.depth}")
+            self.total_states_used += 1
+            # print(f"depth =  {state.depth}")
             # print(len(stack))
 
             if self.is_goal_state(state):
@@ -95,7 +95,7 @@ class branch_n_bound_depth_first(Algorithm):
 
             if self.is_goal_state(state):
                 goal_states_visited += 1
-                
+
                 if state.depth < best_state_depth:
                     print("joepie", goal_states_visited)
                     best_state_depth = state.depth
