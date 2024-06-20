@@ -11,7 +11,6 @@ class Depth_first(Algorithm):
     def run(self, max_depth=math.inf):
         start_state = copy.deepcopy(self.board)
         stack = [start_state]
-
         while len(stack) > 0:
             state = stack.pop()
             self.total_states_used += 1

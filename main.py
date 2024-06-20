@@ -8,7 +8,7 @@ from src.algorithms import a_star
 from src.algorithms import iterative_deepening
 
 from src.plots import visualize
-
+import time
 # test = Experiment("gameboards/Rushhour12x12_7.csv")
 
 # test.run_experiment(["randomize"], n=5, random_max_moves=10)
@@ -38,18 +38,20 @@ from src.plots import visualize
 
 # visualize.visualize_moves(test_board, final_board.moves)
 
-# ----------------random_start_depth_first -----------------------
+# # ----------------random_start_depth_first -----------------------
 # test_board = Board("gameboards/Rushhour6x6_1.csv")
-
+#
 # test_algorithm = depth_first.random_start_depth_first(test_board)
 # # test_algorithm = depth_first.Depth_first(test_board)
+# start = time.time()
 # final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run(2)
-
+# end = time.time() - start
+# print(end)
 # print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
 # print(f"moves: {final_board.moves}")
 # final_board.plot()
-
-# visualize.visualize_moves(test_board, final_board.moves)
+#
+# # visualize.visualize_moves(test_board, final_board.moves)
 
 # # ---------------- branch_n_bound_depth_first -----------------------
 # test_board = Board("gameboards/Rushhour9x9_4.csv")
@@ -81,10 +83,16 @@ from src.plots import visualize
 test_board = Board("gameboards/Rushhour6x6_1.csv")
 
 test_algorithm = a_star.A_star(test_board)
-final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
+start = time.time()
 
+final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
+end = time.time() - start
+
+# cost = test_algorithm.calc_board_cost(test_board)
+# print(cost)
+print(end)
 print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
 print(f"moves: {final_board.moves}")
-# final_board.plot()
-
+final_board.plot()
+#
 # visualize.visualize_moves(test_board, final_board.moves)
