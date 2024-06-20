@@ -17,8 +17,8 @@ In de main.py kan men het gameboard en het algoritme wat gebruikt moet worden aa
 
 
 ## Structuur
-UML
 ![alt text](https://github.com/sebasvanwaard/rushproject/blob/main/UML.png)
+
 
 
 De lijst hieronder beschrijft de belangrijkste mappen en files in het project, en waar je ze kan vinden:
