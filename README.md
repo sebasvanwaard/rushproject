@@ -10,8 +10,20 @@ Deze codebase is volledig geschreven in Python 3.12.3.
 Een voorbeeldje kan gerund worden door aanroepen van:
 
 ```
-python main.py
+python main.py pad_naar_boardfile Algoritme
 ```
+
+bijvoorbeeld
+
+python main.py gameboards/Rushhour6x6_1.csv Breadth_first
+
+en geeft de volgende output:
+The solution to gameboards/Rushhour6x6_1.csv was found in 1.3586597442626953
+The found solution: [('A', -1), ('C', -1), ('G', -1), ('G', -1), ('J', -1), ('I', 1), ('I', 1), ('H', 1), ('E', 1), ('D', -1), ('L', -1), ('L', -1), ('J', -1), ('J', -1), ('E', 1), ('E', 1), ('H', -1), ('I', -1), ('I', -1), ('I', -1), ('H', 1), ('E', -1), ('E', -1), ('J', 1), ('J', 1), ('J', 1), ('E', 1), ('L', 1), ('X', 1), ('X', 1), ('X', 1), ('G', 1), ('B', -1), ('I', -1), ('X', 1)]
+This solution has 35 moves
+In total 2895 states have been generated, of which 2305 where duplicates (and thus unused)
+A total of 590 states were visited
+
 
 In de main.py kan men het gameboard en het algoritme wat gebruikt moet worden aanpassen. 
 

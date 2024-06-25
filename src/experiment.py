@@ -36,9 +36,7 @@ class Experiment:
         return random_algorithm(copy.deepcopy(self.board), max_moves)
 
     def run_astar(self):
-        algorithm = a_star.A_star(self.board)
-
-        return algorithm.run
+        pass
 
     def run_breadth(self):
         pass

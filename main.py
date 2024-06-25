@@ -2,12 +2,11 @@ import math
 
 from src.experiment import *
 from src.game import *
-from src.algorithms import breadth_first
-from src.algorithms import depth_first
-from src.algorithms import a_star
-from src.algorithms import iterative_deepening
+from src.algorithms import breadth_first, depth_first, a_star, iterative_deepening
 from src.algorithms import a_star_lukas as lukas
-from src.algorithms import a_star_NN
+
+import argparse
+import importlib
 
 from src.plots import visualize
 import time
@@ -29,17 +28,16 @@ import time
 # run_random_n_times(filepath, 30)
 
 # ----------------breadth_first -----------------------
-# test_board = Board("gameboards/Rushhour9x9_4.csv")
+test_board = Board("gameboards/Rushhour6x6_1.csv")
 
-# test_algorithm = breadth_first.Breadth_first(test_board)
-# # test_algorithm = depth_first.Depth_first(test_board)
-# final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
+test_algorithm = breadth_first.Breadth_first(test_board)
+final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
 
-# print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
-# print(f"moves: {final_board.moves}")
-# # final_board.plot()
+print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
+print(f"moves: {final_board.moves}")
+# final_board.plot()
 
-# visualize.visualize_moves(test_board, final_board.moves)
+visualize.visualize_moves(test_board, final_board.moves)
 
 # # ----------------random_start_depth_first -----------------------
 # test_board = Board("gameboards/Rushhour6x6_1.csv")
@@ -83,20 +81,20 @@ import time
 # visualize.visualize_moves(test_board, final_board.moves)
 
 # # ---------------- a_star -----------------------
-test_board = Board("gameboards/Rushhour6x6_1.csv")
+# test_board = Board("gameboards/Rushhour6x6_1.csv")
 
-test_algorithm = a_star.A_star(test_board)
-start = time.time()
+# test_algorithm = a_star.A_star(test_board)
+# start = time.time()
 
-final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
-end = time.time() - start
+# final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
+# end = time.time() - start
 
-# cost = test_algorithm.calc_board_cost(test_board)
-# print(cost)
-print(end)
-print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
-print(f"moves: {final_board.moves}")
-# final_board.plot()
+# # cost = test_algorithm.calc_board_cost(test_board)
+# # print(cost)
+# print(end)
+# print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
+# print(f"moves: {final_board.moves}")
+# # final_board.plot()
 
 # visualize.visualize_moves(test_board, final_board.moves)
 
@@ -110,7 +108,7 @@ print(f"moves: {final_board.moves}")
 # print(end)
 
 # print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
-# # print(f"moves: {final_board.moves}")
+# print(f"moves: {final_board.moves}")
 
 # # ---------------- a_star_NN -----------------------
 # test_board = Board("gameboards/Rushhour6x6_1.csv")
@@ -131,3 +129,32 @@ print(f"moves: {final_board.moves}")
 # # final_board.plot()
 
 # # visualize.visualize_moves(test_board, final_board.moves)
+
+# if __name__ == '__main__':
+# 	parser = argparse.ArgumentParser(description="Main executable")
+# 	parser.add_argument('boardfile', help='the filepath to the board csv to be solved')
+# 	parser.add_argument('algorithm', help='the algorithm used to solve the board (Breadth_first, Depth_first, A_star, Iterative_deepening ; case sensitive)')
+# 	parser.add_argument('-v', default=False, help='visualize the solution for the specified board')
+	
+# 	args = parser.parse_args()
+
+# 	board = Board(args.boardfile)
+# 	module = importlib.import_module(f'src.algorithms.{args.algorithm.lower()}')
+# 	algorithm_obj = getattr(module, args.algorithm)
+# 	algorithm = algorithm_obj(copy.deepcopy(board))
+
+# 	start = time.time()
+# 	final_board, total_moves, total_states_used, total_states_generated = algorithm.run()
+# 	end = time.time()
+
+# 	runtime = end - start
+
+# 	print(f"The solution to {args.boardfile} was found in {runtime} seconds")
+# 	print(f"The found solution: {final_board.moves}")
+# 	print(f"This solution has {total_moves} moves")
+# 	print(f"In total {total_states_generated} states have been generated, of which {total_states_generated-total_states_used} where duplicates (and thus unused)")
+# 	print(f"A total of {total_states_used} states were visited")
+
+# 	if args.v:
+# 		visualize.visualize_moves(board, final_board.moves)
+	
