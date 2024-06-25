@@ -10,6 +10,9 @@ from src.algorithms import a_star_lukas as lukas
 
 from src.plots import visualize
 import time
+
+from tensorflow.keras import models
+
 # test = Experiment("gameboards/Rushhour12x12_7.csv")
 
 # test.run_experiment(["randomize"], n=5, random_max_moves=10)
@@ -81,7 +84,7 @@ import time
 # visualize.visualize_moves(test_board, final_board.moves)
 
 # # ---------------- a_star -----------------------
-# test_board = Board("gameboards/Rushhour6x6_2.csv")
+test_board = Board("gameboards/Rushhour6x6_1.csv")
 #
 # test_algorithm = a_star.A_star(test_board)
 # start = time.time()
@@ -99,13 +102,24 @@ import time
 # # visualize.visualize_moves(test_board, final_board.moves)
 
 # ------------A_star_lukas
-test_board = Board("gameboards/Rushhour6x6_2.csv")
-test_algorithm = lukas.A_star_lukas(test_board)
-start = time.time()
+# test_board = Board("gameboards/Rushhour6x6_2.csv")
+# test_algorithm = lukas.A_star_lukas(test_board)
+# start = time.time()
 
-final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
-end = time.time() - start
-print(end)
+# final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
+# end = time.time() - start
+# print(end)
 
-print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
-# print(f"moves: {final_board.moves}")
+# print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
+# # print(f"moves: {final_board.moves}")
+
+
+def NN_board_cost(board):
+    x_data = board.get_unique_id()
+
+    to_ascii = np.vectorize(ord)
+    x_data = to_ascii(x_data)
+
+    print(x_data)
+
+NN_board_cost(test_board)
