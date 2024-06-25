@@ -5,7 +5,7 @@ import csv
 
 from .game.board import *
 from .algorithms.randomize import *
-from src.algorithms import breadth_first, depth_first, iterative_deepening, randomize, a_star_lukas, a_star_NN, a_star
+from src.algorithms import breadth_first, depth_first, iterative_deepening, randomize, a_star_lukas, a_star_nn, a_star
 
 import random
 

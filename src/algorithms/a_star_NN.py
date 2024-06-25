@@ -5,10 +5,10 @@ import math
 import numpy as np
 from tensorflow.keras import models
 
-class A_star_NN(Algorithm):
+class A_star_nn(Algorithm):
     def __init__(self, board):
         super().__init__(board)
-        self.cost_model = models.load_model('src/neural_cost/board_cost_model.h5')
+        self.cost_model = models.load_model('src/neural_cost/board_cost_model_36x72x144x1.h5')
 
     def run(self):
         state = copy.deepcopy(self.board)
