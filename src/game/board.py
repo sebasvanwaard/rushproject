@@ -5,6 +5,7 @@ import matplotlib.patches as patches
 import random
 
 from .car import *
+from tensorflow.keras import models
 
 
 class Board:
@@ -101,3 +102,17 @@ class Board:
 
     def get_unique_id(self):
         return np.array2string(self.grid)
+    
+    def get_cost(self):
+        x_data = self.grid.flatten()
+
+        to_ascii = np.vectorize(ord)
+        x_data = to_ascii(x_data)
+        x_data = x_data.reshape(1,36)
+        print(x_data.shape)
+
+        model = models.load_model('src/neural_cost/board_cost_model.h5')
+
+        prediction = model.predict(x_data)
+        
+        return prediction

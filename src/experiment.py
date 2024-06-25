@@ -5,6 +5,7 @@ import csv
 
 from .game.board import *
 from .algorithms.randomize import *
+from src.algorithms import breadth_first, depth_first, iterative_deepening, randomize, a_star_lukas, a_star_NN, a_star
 
 import random
 
@@ -15,7 +16,10 @@ class Experiment:
         self.starting_board = copy.deepcopy(self.board)
         self.gameboard_filename = filename
 
-    def run_experiment(self, algorithms, n, random_max_moves=100000):
+    def run_experiment(self, algorithms, n, random_max_moves=None):
+        if random_max_moves == None:
+            random_max_moves = self.random_max_moves
+        
         for algorithm in algorithms:
 
             if algorithm == "randomize":
@@ -29,10 +33,12 @@ class Experiment:
                 self.data_to_csv(random_data, self.gameboard_filename, f"experiments/data/{algorithm}")
 
     def run_random(self, max_moves=100000):
-            return random_algorithm(copy.deepcopy(self.board), max_moves)
+        return random_algorithm(copy.deepcopy(self.board), max_moves)
 
     def run_astar(self):
-        pass
+        algorithm = a_star.A_star(self.board)
+
+        return algorithm.run
 
     def run_breadth(self):
         pass

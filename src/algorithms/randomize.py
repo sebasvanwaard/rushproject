@@ -1,13 +1,13 @@
 import random
+import math
 
-def random_algorithm(board, n):
+def random_algorithm(board, max_moves=math.inf):
 	"""
 	laat de board met auto's random stappen doen voor N keren of totdat het
 	een oplossing heeft
 	args:
-		n: max amount of valid moves that can be made
-		print_states: print the initial an final state of the board
-		print_end_output: print the difference between starting and ending positions of cars, as well as the total valid and total attempted moves
+		board: the starting board to be solved
+		max_moves: the max 
 	"""
 	car_names = list(board.cars.keys())
 	step_choices = [1, -1]
@@ -18,7 +18,7 @@ def random_algorithm(board, n):
 	total_moves = 0
 
 	# probeer een n moves te maken
-	while valid_moves < n:
+	while valid_moves < max_moves:
 		car = board.cars[car_names[random.randint(0, len(car_names)-1)]]
 		step = random.choice(step_choices)
 		# maak move, als dit succesvol append naar moves en update het board. Tel een valid move

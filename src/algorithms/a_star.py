@@ -2,6 +2,7 @@ from .algorithm import Algorithm
 
 import copy
 import math
+from tensorflow.keras import models
 
 class A_star(Algorithm):
     def __init__(self, board):

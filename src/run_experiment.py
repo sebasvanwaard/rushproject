@@ -3,46 +3,37 @@ import time
 import csv
 import os
 
-from algorithms import breadth_first
-from algorithms import depth_first
-from algorithms import a_star
+from algorithms import breadth_first, depth_first, a_star, iterative_deepening, randomize
+from game.board import Board
+from experiment import Experiment
 
-def run_algorithm(algorithm, board, experiment_dir, csv_file):
-    start = time.time()
-    n_runs = 0
-    
-    if not os.path.exists(experiment_dir):
-        os.makedirs(experiment_dir)
-    
-    csv_path = os.path.join(experiment_dir, csv_file)
+def run_algorithm(gameboards_dir, algorithm, output_dir):
+    output_file = f"{output_dir}/{algorithm.__name__}"
 
-    if not os.path.exists(csv_path):
-        with open(csv_path, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(['Run', 'Execution Time (s)', 'Timestamp'])
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
-    while time.time() - start < 3600:
-        print(f"run: {n_runs}")
-        run_start = time.time()
-        subprocess.call(["gtimeout", "60", "python3", algorithm(board)])
-        run_end = time.time()
+    data = []
 
-        execution_time = run_end - run_start
-        timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(run_end))
+    if algorithm == 'baseline (random)':
+        
 
-        with open(csv_path, mode='a', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([n_runs, execution_time, timestamp])
+    for board_path in os.listdir(gameboards_dir):
+        board = Board(f"{gameboards_dir}/{board_path}")
+        alg = algorithm(board)
 
-        n_runs += 1
+        final_board, total_moves, total_states_used, total_states_generated = alg.run()
+        data.append([board_path, total_moves, total_states_used, total_states_generated])
 
-algorithms = [depth_first.Depth_first, breadth_first.Breadth_first, a_star.A_star]
+    with open(output_file, 'w') as file:
+        writer = csv.writer(file)
+        writer.writerow(['gameboard', 'total_moves', 'total_states_used', 'total_states_generated'])
+        for d in data:
+            writer.writerow(d)
 
-for algorithm in algorithms:
-    for board in 'gameboards':
-        board_name = os.path.splitext(board)[0]
-        algorithm_name = splitext(algorithm)[0]
-        csv_filename = f'{algorithm_name}_{board_name}_results.csv'  
-        experiment_directory = f'experiments/data/{algorithm_name}'  
 
-        run_algorithm(algorithm, board_name, csv_filename, experiment_directory)
+if __name__ == '__main__':
+    algorithms = ['baseline (random)', depth_first.Depth_first, breadth_first.Breadth_first, a_star.A_star, iterative_deepening.Iterative_deepening_with_archive]
+
+    for algorithm in algorithms:
+        run_algorithm('gameboardscopy', algorithm, 'experiments/data2')

@@ -7,11 +7,10 @@ from src.algorithms import depth_first
 from src.algorithms import a_star
 from src.algorithms import iterative_deepening
 from src.algorithms import a_star_lukas as lukas
+from src.algorithms import a_star_NN
 
 from src.plots import visualize
 import time
-
-from tensorflow.keras import models
 
 # test = Experiment("gameboards/Rushhour12x12_7.csv")
 
@@ -85,21 +84,21 @@ from tensorflow.keras import models
 
 # # ---------------- a_star -----------------------
 test_board = Board("gameboards/Rushhour6x6_1.csv")
-#
-# test_algorithm = a_star.A_star(test_board)
-# start = time.time()
-#
-# final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
-# end = time.time() - start
-#
-# # cost = test_algorithm.calc_board_cost(test_board)
-# # print(cost)
-# print(end)
-# print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
-# print(f"moves: {final_board.moves}")
+
+test_algorithm = a_star.A_star(test_board)
+start = time.time()
+
+final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
+end = time.time() - start
+
+# cost = test_algorithm.calc_board_cost(test_board)
+# print(cost)
+print(end)
+print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
+print(f"moves: {final_board.moves}")
 # final_board.plot()
-# #
-# # visualize.visualize_moves(test_board, final_board.moves)
+
+# visualize.visualize_moves(test_board, final_board.moves)
 
 # ------------A_star_lukas
 # test_board = Board("gameboards/Rushhour6x6_2.csv")
@@ -113,13 +112,22 @@ test_board = Board("gameboards/Rushhour6x6_1.csv")
 # print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
 # # print(f"moves: {final_board.moves}")
 
+# # ---------------- a_star_NN -----------------------
+# test_board = Board("gameboards/Rushhour6x6_1.csv")
 
-def NN_board_cost(board):
-    x_data = board.get_unique_id()
+# test_algorithm = a_star_NN.A_star_NN(test_board)
+# start = time.time()
 
-    to_ascii = np.vectorize(ord)
-    x_data = to_ascii(x_data)
+# # print(test_algorithm.calc_cost(test_board))
 
-    print(x_data)
+# final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
+# end = time.time() - start
 
-NN_board_cost(test_board)
+# # cost = test_algorithm.calc_board_cost(test_board)
+# # print(cost)
+# print(end)
+# print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
+# print(f"moves: {final_board.moves}")
+# # final_board.plot()
+
+# # visualize.visualize_moves(test_board, final_board.moves)
