@@ -23,18 +23,16 @@ class Algorithm:
         possible_gamestates = []
 
         for car in board.cars.values():
-            for move in car.get_possible_moves(board.grid):
+            for possible_move in car.get_possible_moves(board.grid):
                 board_copy = copy.deepcopy(board)
                 board_copy.depth += 1
-                board_copy.cars[car.name].simple_move(move)
-                board_copy.moves.append((car.name, move))
+                board_copy.cars[car.name].simple_move(possible_move)
+                board_copy.moves.append((car.name, possible_move))
                 board_copy.update()
-                
+
                 possible_gamestates.append(board_copy)
 
         return possible_gamestates
-
-
 
     def is_in_archive(self, possible_state):
         """
@@ -44,14 +42,14 @@ class Algorithm:
         returns: True if the state is present in the archive and the visited state has a smaller depth. Returns False if the state to be checked is not present in the archive or if its depth is lower than the archived depth.
         """
         unique_id = possible_state.get_unique_id()
-        
+
         if unique_id not in self.state_dict:
             self.state_dict[unique_id] = possible_state.depth
             return False
         elif possible_state.depth < self.state_dict[unique_id]:
             self.state_dict[unique_id] = possible_state.depth
             return False
-        
+
         return True
 
     def is_goal_state(self, state):

@@ -93,11 +93,11 @@ class A_star(Algorithm):
         for car in blocking_cars:
             # print(car)
             if car is None:
-                cost = cost + 1
+                cost = cost + 100
             elif board.cars[car].length == 2:
-                cost = cost + 2
+                cost = cost + 1
             else:
-                cost = cost + 0.5
+                cost = cost + 3
         # cost = cost + 1
 
         cost1 = self.calc_cost(board, blocking_cars[0], cost, calc_depth)

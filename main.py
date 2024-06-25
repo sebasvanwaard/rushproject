@@ -6,6 +6,7 @@ from src.algorithms import breadth_first
 from src.algorithms import depth_first
 from src.algorithms import a_star
 from src.algorithms import iterative_deepening
+from src.algorithms import a_star_lukas as lukas
 
 from src.plots import visualize
 import time
@@ -79,20 +80,32 @@ import time
 
 # visualize.visualize_moves(test_board, final_board.moves)
 
-# ---------------- a_star -----------------------
-test_board = Board("gameboards/Rushhour6x6_1.csv")
+# # ---------------- a_star -----------------------
+# test_board = Board("gameboards/Rushhour6x6_2.csv")
+#
+# test_algorithm = a_star.A_star(test_board)
+# start = time.time()
+#
+# final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
+# end = time.time() - start
+#
+# # cost = test_algorithm.calc_board_cost(test_board)
+# # print(cost)
+# print(end)
+# print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
+# print(f"moves: {final_board.moves}")
+# final_board.plot()
+# #
+# # visualize.visualize_moves(test_board, final_board.moves)
 
-test_algorithm = a_star.A_star(test_board)
+# ------------A_star_lukas
+test_board = Board("gameboards/Rushhour6x6_2.csv")
+test_algorithm = lukas.A_star_lukas(test_board)
 start = time.time()
 
 final_board, total_moves, total_states_used, total_states_generated = test_algorithm.run()
 end = time.time() - start
-
-# cost = test_algorithm.calc_board_cost(test_board)
-# print(cost)
 print(end)
+
 print(f"total moves: {total_moves}, total states used: {total_states_used}, total states generated: {total_states_generated}")
-print(f"moves: {final_board.moves}")
-final_board.plot()
-#
-# visualize.visualize_moves(test_board, final_board.moves)
+# print(f"moves: {final_board.moves}")
