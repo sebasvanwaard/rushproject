@@ -3,6 +3,8 @@ from .algorithm import Algorithm
 import copy
 import math
 
+import time
+
 class Depth_first(Algorithm):
     """
 	This is a subclass of the class Algorithm and entails the breadth first algorithm. 
@@ -15,7 +17,7 @@ class Depth_first(Algorithm):
 
         super().__init__(board)
 
-    def run(self, max_depth=math.inf):
+    def run(self, max_depth=math.inf, max_time=math.inf):
         """
         run a depth first search for a solution of the given board. Integrated stack.
 		args:
@@ -29,7 +31,9 @@ class Depth_first(Algorithm):
 
         start_state = copy.deepcopy(self.board)
         stack = [start_state]
-        while len(stack) > 0:
+        start_time = time.time()
+        
+        while len(stack) > 0 and start_time - time.time() < max_time:
             state = stack.pop()
             self.total_states_used += 1
 
