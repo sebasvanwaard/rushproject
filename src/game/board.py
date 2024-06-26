@@ -5,7 +5,6 @@ import matplotlib.patches as patches
 import random
 
 from .car import *
-from tensorflow.keras import models
 
 
 class Board:
@@ -26,6 +25,7 @@ class Board:
         returns:
             a df/list/dict containing the car information
         """
+
         df = pd.read_csv(filename)
         return df
 
@@ -37,6 +37,7 @@ class Board:
         return:
             the dimension (int)
         """
+
         name = filename.split('/')[-1].split('x')[0]
         numbers_lst = [s for s in name if s.isdigit()]
         shape = int(''.join(numbers_lst))
@@ -44,6 +45,12 @@ class Board:
         return shape
 
     def load_cars(self):
+        """
+        Read the car information in the file and create all the relevant Cars with their initializations.
+        return:
+            car objects
+        """
+
         cars = {}
 
         for _, car in self.car_info.iterrows():
@@ -63,6 +70,7 @@ class Board:
         returns:
             the numpy array of the board
         """
+
         self.grid = np.full((self.shape, self.shape), '.')
 
         for car in self.cars.values():
@@ -76,9 +84,20 @@ class Board:
         return self.grid
 
     def draw(self):
+        """
+        Print the board grid.
+        """
+
         print(self.grid)
 
     def plot(self, show=False):
+        """
+        Plot the cars and board in one figure.
+        args:
+            show = whether you show the plot or not. Default is False, so not showing.
+        returns:
+            returns pyplot objects, fig and ax.
+        """
 
         fig, ax = plt.subplots()
         ax.plot()
@@ -102,18 +121,10 @@ class Board:
         return fig, ax
 
     def get_unique_id(self):
+        """
+        Convert the board as a 2D numpy to a unique string. 
+        returns:
+            Unique string of the board.
+        """
+
         return np.array2string(self.grid)
-
-    def get_cost(self):
-        x_data = self.grid.flatten()
-
-        to_ascii = np.vectorize(ord)
-        x_data = to_ascii(x_data)
-        x_data = x_data.reshape(1,36)
-        print(x_data.shape)
-
-        model = models.load_model('src/neural_cost/board_cost_model.h5')
-
-        prediction = model.predict(x_data)
-
-        return prediction
