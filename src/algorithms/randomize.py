@@ -21,7 +21,7 @@ def random_algorithm(board, max_moves=math.inf, max_time = math.inf):
 	start_time = time.time()
 
 	# probeer een n moves te maken
-	while valid_moves < max_moves and start_time - time.time() < max_time:
+	while valid_moves < max_moves and time.time() - start_time < max_time:
 		car = board.cars[car_names[random.randint(0, len(car_names)-1)]]
 		step = random.choice(step_choices)
 		# maak move, als dit succesvol append naar moves en update het board. Tel een valid move

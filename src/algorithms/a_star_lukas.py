@@ -3,6 +3,8 @@ from .algorithm import Algorithm
 import copy
 import math
 
+import time
+
 class A_star_lukas(Algorithm):
     def __init__(self, board):
         super().__init__(board)
@@ -200,12 +202,14 @@ class A_star_lukas(Algorithm):
 
         return self.board
 
-    def run(self, max_depth=math.inf):
+    def run(self, max_depth=math.inf, max_time = math.inf):
         start_state = copy.deepcopy(self.board)
         start_board = copy.deepcopy(self.board)
         stack = [start_state]
         first_time_pop = False
-        while len(stack) > 0:
+
+        start_time = time.time()
+        while len(stack) > 0 and time.time() - start_time < max_time:
             if first_time_pop == False:
                 state = stack.pop()
 

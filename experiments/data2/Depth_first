@@ -1,4 +1,3 @@
 gameboard,total_moves,total_states_used,total_states_generated
-Rushhour6x6_1.csv,115,138,644
-Rushhour6x6_2.csv,477,713,4403
-Rushhour6x6_3.csv,1382,10613,53564
+Rushhour6x6_1.csv,142,196,868
+Rushhour6x6_2.csv,219,220,1520

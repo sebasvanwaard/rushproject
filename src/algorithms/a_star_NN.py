@@ -23,7 +23,7 @@ class A_star_nn(Algorithm):
         start_time = time.time()
 
 
-        while state.cars['X'].x_pos != goal_state and start_time - time.time() < max_time:
+        while state.cars['X'].x_pos != goal_state and time.time() - start_time < max_time:
             total_states_used += 1
 
             unique_id = state.get_unique_id()
@@ -37,7 +37,6 @@ class A_star_nn(Algorithm):
                     state_cost_dict[possible_state] = self.calc_cost(possible_state)
 
             state_cost_dict = dict(sorted(state_cost_dict.items(), key=lambda item: item[1], reverse=True))
-            # print(f"cost: {min(state_cost_dict.values())}")
             state = state_cost_dict.popitem()[0]
 
 

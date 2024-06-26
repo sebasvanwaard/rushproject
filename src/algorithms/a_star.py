@@ -36,7 +36,7 @@ class A_star(Algorithm):
 
         start_time = time.time()
 
-        while state.cars['X'].x_pos != goal_state and start_time - time.time() < max_time:
+        while state.cars['X'].x_pos != goal_state and time.time() - start_time < max_time:
             total_states_used += 1
 
             unique_id = state.get_unique_id()
