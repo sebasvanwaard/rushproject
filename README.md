@@ -31,6 +31,15 @@ A total of 590 states were visited
 
 In de main.py staan verder voor elk algoritme wat proef code klaar waar met meer controle de algoritmes kunnen worden gerund.
 
+## Run_experiment
+Om alle experimenten te runnen kan run_experiment.py gebruikt worden.
+Run vanuit de root directory:
+python run_experiment.py path/to/gameboards path/to/outputdata -max_time 1234 -random_iterations 1234
+
+De optionele argumenten:
+-max_time: de maximale tijd (in sec) waarvoor een algoritme mag runnen voor elk bord dat opgelost moet worden. (default = math.inf)
+-random_iterations: het aantal iteraties waarvoor het random algoritme wordt gerund per bord. (default = 1000)
+
 
 ## Structuur
 ![alt text](https://github.com/sebasvanwaard/rushproject/blob/main/UML.png)
