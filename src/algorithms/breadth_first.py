@@ -1,4 +1,3 @@
-# importing
 from .algorithm import Algorithm
 
 import copy
@@ -7,7 +6,6 @@ import queue
 
 import time
 
-# Breadth first subclass from the Algorithm parent class
 class Breadth_first(Algorithm):
 	"""
 	This is a subclass of the class Algorithm and entails the breadth first algorithm. 
