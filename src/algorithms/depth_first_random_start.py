@@ -1,4 +1,3 @@
-
 from .algorithm import Algorithm
 
 import copy
@@ -12,7 +11,6 @@ class Depth_first_random_start(Algorithm):
         super().__init__(board)
 
     def run(self, max_random_choice_depth=0, max_depth=math.inf, max_time=math.inf):
-        goal_state = self.board.shape - 2
 
         start_state = copy.deepcopy(self.board)
         stack = [start_state]
