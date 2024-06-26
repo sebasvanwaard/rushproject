@@ -6,9 +6,9 @@ import numpy as np
 from tensorflow.keras import models
 
 class A_star_nn(Algorithm):
-    def __init__(self, board):
+    def __init__(self, board, model):
         super().__init__(board)
-        self.cost_model = models.load_model('src/neural_cost/board_cost_model_36x72x144x1.h5')
+        self.cost_model = models.load_model(model)
 
     def run(self):
         state = copy.deepcopy(self.board)
@@ -40,7 +40,8 @@ class A_star_nn(Algorithm):
         print("joepie")
         return (state, state.depth, total_states_used, total_states_generated)
 
-
+    
+    
     def calc_cost(self, board):
         x_data = board.grid.flatten()
 

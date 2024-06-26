@@ -3,7 +3,7 @@ from .algorithm import Algorithm
 import copy
 import math
 
-class Iterative_deepening_with_archive(Algorithm):
+class Iterative_deepening(Algorithm):
     def __init__(self, board):
         super().__init__(board)
 
