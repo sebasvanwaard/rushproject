@@ -22,7 +22,6 @@ class Breadth_first(Algorithm):
 		possible_states.put(copy.deepcopy(self.board))
 
 		while not possible_states.empty():
-				# print(possible_states.qsize())
 				state = possible_states.get()
 				self.total_states_used += 1
 				if self.is_goal_state(state):
