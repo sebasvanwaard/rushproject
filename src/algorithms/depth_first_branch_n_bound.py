@@ -65,6 +65,4 @@ class Depth_first_branch_n_bound(Algorithm):
         if best_state is not None:
             return (best_state, best_state.depth, self.total_states_used, self.total_states_generated)
         else:
-            print(f"no solution found within {max_depth} depth")
-
             return False
