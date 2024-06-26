@@ -12,7 +12,7 @@ class Car:
 		self.length = length
 		self.orientation = orientation
 		self.color = color
-	
+
 	def move(self, step, board):
 		"""
 		Function to move the car on the board.
@@ -21,7 +21,7 @@ class Car:
 			board: the Board object the car belongs to
 		returns True if move was made, False if the move could not be made (because cars/walls were in the way)
 		"""
-		moves = self.get_possible_moves(board.gird)
+		moves = self.get_possible_moves(board)
 
 		if step in moves:
 			if self.orientation == 'H':
@@ -63,14 +63,14 @@ class Car:
 			if not self.x_pos + self.length >= board_grid.shape[0]:
 				if board_grid[self.y_pos, self.x_pos + self.length] == '.':
 					moves.add(1)
-		
+
 		if self.orientation == 'V':
 			if not self.y_pos - 1 < 0:
 				if board_grid[self.y_pos - 1, self.x_pos] == '.':
 					moves.add(-1)
-					
+
 			if not self.y_pos + self.length >= board_grid.shape[0]:
 				if board_grid[self.y_pos + self.length, self.x_pos] == '.':
 					moves.add(1)
-			
+
 		return moves

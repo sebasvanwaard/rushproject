@@ -135,7 +135,7 @@ if __name__ == '__main__':
 	parser.add_argument('boardfile', help='the filepath to the board csv to be solved')
 	parser.add_argument('algorithm', help='the algorithm used to solve the board (Breadth_first, Depth_first, A_star, Iterative_deepening ; case sensitive)')
 	parser.add_argument('-v', default=False, help='visualize the solution for the specified board')
-	
+
 	args = parser.parse_args()
 
 	board = Board(args.boardfile)
@@ -164,4 +164,3 @@ if __name__ == '__main__':
 
 	if args.v:
 		visualize.visualize_moves(board, final_board.moves)
-	

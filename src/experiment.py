@@ -19,7 +19,7 @@ class Experiment:
     def run_experiment(self, algorithms, n, random_max_moves=None):
         if random_max_moves == None:
             random_max_moves = self.random_max_moves
-        
+
         for algorithm in algorithms:
 
             if algorithm == "randomize":

@@ -13,6 +13,7 @@ class Board:
         self.shape = self.get_shape(filename)
         self.car_info = self.read_file(filename)
         self.cars = self.load_cars()
+        self.grid = np.full((self.shape, self.shape), '.')
         self.grid = self.update()
         self.depth = 0
         self.moves = []
@@ -49,7 +50,7 @@ class Board:
             color = "#00" + f"{format(random.randrange(0, 16**8), '08x')}"[2:]
             if car['car'] == 'X':
                 color = "#FF0000"
-            
+
             cars[car['car']] = Car(car['car'], car['col'] - 1, car['row'] - 1, car['length'], car['orientation'], color)
 
         return cars
@@ -97,12 +98,12 @@ class Board:
 
         if show:
             plt.show()
-        
+
         return fig, ax
 
     def get_unique_id(self):
         return np.array2string(self.grid)
-    
+
     def get_cost(self):
         x_data = self.grid.flatten()
 
@@ -114,5 +115,5 @@ class Board:
         model = models.load_model('src/neural_cost/board_cost_model.h5')
 
         prediction = model.predict(x_data)
-        
+
         return prediction
