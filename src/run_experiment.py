@@ -1,5 +1,6 @@
 import csv
 import os
+import time
 
 from algorithms import breadth_first, depth_first, a_star, iterative_deepening, randomize
 from game.board import Board
@@ -32,7 +33,7 @@ def run_algorithm(gameboards_dir, algorithm, output_dir):
         else:
             output_file = f"{output_dir}/{algorithm.__name__}"
             alg = algorithm(board)
-
+            
             final_board, total_moves, total_states_used, total_states_generated = alg.run()
             data.append([board_path, total_moves, total_states_used, total_states_generated])
 
