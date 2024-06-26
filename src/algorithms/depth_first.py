@@ -7,7 +7,7 @@ import time
 
 class Depth_first(Algorithm):
     """
-	This is a subclass of the class Algorithm and entails the breadth first algorithm. 
+	This is a subclass of the class Algorithm and entails the depth first algorithm. 
 	"""
     
     def __init__(self, board):
