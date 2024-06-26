@@ -15,21 +15,32 @@ def run_algorithm(gameboards_dir, algorithm, output_dir):
 
     data = []
 
-    if algorithm == 'baseline (random)':
-        
-
     for board_path in os.listdir(gameboards_dir):
         board = Board(f"{gameboards_dir}/{board_path}")
-        alg = algorithm(board)
 
-        final_board, total_moves, total_states_used, total_states_generated = alg.run()
-        data.append([board_path, total_moves, total_states_used, total_states_generated])
+        if algorithm == 'baseline (random)':
+            for iteration in range(1, 1000):
+                final_board, valid_moves, total_moves = randomize.random_algorithm(board)
+                iteration_data = {"iteration": iteration, "solved": final_board, "valid_moves": valid_moves, "total_moves": total_moves}
+                data.append(iteration_data)
+        
+            with open(output_file, 'w') as file:
+                writer = csv.writer(file)
+                writer.writerow(['iteration', 'gameboard', 'valid_moves', 'total_moves'])
+                for d in data:
+                    writer.writerow(d)
 
-    with open(output_file, 'w') as file:
-        writer = csv.writer(file)
-        writer.writerow(['gameboard', 'total_moves', 'total_states_used', 'total_states_generated'])
-        for d in data:
-            writer.writerow(d)
+        else:
+            alg = algorithm(board)
+
+            final_board, total_moves, total_states_used, total_states_generated = alg.run()
+            data.append([board_path, total_moves, total_states_used, total_states_generated])
+
+            with open(output_file, 'w') as file:
+                writer = csv.writer(file)
+                writer.writerow(['gameboard', 'total_moves', 'total_states_used', 'total_states_generated'])
+                for d in data:
+                    writer.writerow(d)
 
 
 if __name__ == '__main__':

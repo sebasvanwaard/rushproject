@@ -19,14 +19,14 @@ class Experiment:
     def run_experiment(self, algorithms, n, random_max_moves=None):
         if random_max_moves == None:
             random_max_moves = self.random_max_moves
-
+        
         for algorithm in algorithms:
 
             if algorithm == "randomize":
                 random_data = []
                 for iteration in range(1, n + 1):
                     print(iteration)
-                    solved, valid_moves, total_moves, _ = self.run_random(random_max_moves)
+                    solved, valid_moves, total_moves = self.run_random(random_max_moves)
                     iteration_data = {"iteration": iteration, "solved": solved, "valid_moves": valid_moves, "total_moves": total_moves}
                     random_data.append(iteration_data)
 
