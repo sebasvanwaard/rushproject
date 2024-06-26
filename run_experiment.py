@@ -11,7 +11,7 @@ from src.algorithms import breadth_first, breadth_first_lukas, \
 from src.game.board import Board
 
 
-def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf):
+def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf, random_iterations = 1000):
 
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -22,10 +22,10 @@ def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf):
         board = Board(f"{gameboards_dir}/{board_path}")
 
         if algorithm == 'baseline (random)':
-            print("Running Randomize")
+            print(f"Running Randomize for {board_path}")
             output_file = f"{output_dir}/{'randomize'}"
 
-            for iteration in range(1, 10):
+            for iteration in range(1, random_iterations):
                 final_board, valid_moves, total_moves, total_states_generated = randomize.random_algorithm(board, max_time = max_time)
                 data.append([iteration, board_path, valid_moves, total_moves])
                 
@@ -37,7 +37,7 @@ def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf):
                     writer.writerow(d)
 
         else:
-            print(f"Running {algorithm.__name__}")
+            print(f"Running {algorithm.__name__} for {board_path}")
             output_file = f"{output_dir}/{algorithm.__name__}"
             alg = algorithm(board)
 
@@ -65,8 +65,9 @@ if __name__ == '__main__':
     parser.add_argument('gamefile_path', help='The path to the directory containing the gamefile.csv you want to test on')
     parser.add_argument('output_path', help='path to directory you want to output the data to')
     parser.add_argument('-max_time', default = 300, help='the maximum time an iteration can take fan any algorithm (in seconds)')
+    parser.add_argument('-random_iterations', default=1000, help='the maximum amount of iterations the random algorithm will do')
 
     args = parser.parse_args()
 
     for algorithm in algorithms:
-        run_algorithm(args.gamefile_path, algorithm, args.output_path, int(args.max_time))
+        run_algorithm(args.gamefile_path, algorithm, args.output_path, max_time = int(args.max_time), random_iterations=int(args.random_iterations))
