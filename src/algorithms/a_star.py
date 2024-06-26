@@ -4,6 +4,8 @@ import copy
 import math
 from tensorflow.keras import models
 
+import time
+
 class A_star(Algorithm):
     """
 	This is a subclass of the class Algorithm and entails the A* algorithm. 
@@ -16,7 +18,7 @@ class A_star(Algorithm):
 
         super().__init__(board)
 
-    def run(self):
+    def run(self, max_time = math.inf):
         """
         run an A* search for a solution of the given board, with several heuristics. Using a priority dictionary.
 		returns:
@@ -33,8 +35,9 @@ class A_star(Algorithm):
         total_states_generated = 0
         state_cost_dict = {state: 0}
 
-
-        while state.cars['X'].x_pos != goal_state:
+        start_time = time.time()
+        
+        while state.cars['X'].x_pos != goal_state and start_time - time.time() < max_time:
             total_states_used += 1
 
             unique_id = state.get_unique_id()

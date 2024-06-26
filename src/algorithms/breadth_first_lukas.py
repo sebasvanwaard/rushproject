@@ -2,7 +2,8 @@ from .algorithm import Algorithm
 
 import copy
 import math
-import random
+
+import time
 
 class Breadth_first_lukas(Algorithm):
     def __init__(self, board):
@@ -81,13 +82,15 @@ class Breadth_first_lukas(Algorithm):
 
         return self.board
 
-    def run(self, max_depth=100):
+    def run(self, max_depth=100, max_time = math.inf):
         start_state = copy.deepcopy(self.board)
         start_board = copy.deepcopy(self.board)
         stack = [start_state]
         first_time_pop = False
-        while len(stack) > 0:
-            # print(len(stack))
+
+        start_time = time.time()
+
+        while len(stack) > 0 and start_time - time.time() < max_time:
             if first_time_pop == False:
                 state = stack.pop(0)
 
@@ -98,13 +101,10 @@ class Breadth_first_lukas(Algorithm):
             if state.depth < max_depth:
                 possible_states = self.get_actions(state)
                 stack.extend(possible_states)
-                # print(stack)
             if first_time_pop == True:
                 state = self.undo_modify_state()
             state = self.modify_state(state, stack.pop(0))
-            # print(state.grid)
             first_time_pop = True
-            # print(state.depth)
             self.total_states_used += 1
 
         print(f"no solution found within {max_depth} depth")

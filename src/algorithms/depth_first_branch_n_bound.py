@@ -3,12 +3,13 @@ from .algorithm import Algorithm
 
 import math
 import copy
+import time
 
 class Depth_first_branch_n_bound(Algorithm):
     def __init__(self, board):
         super().__init__(board)
 
-    def run(self, max_depth, n_goal_state = 200):
+    def run(self, max_depth=math.inf, max_time=math.inf, n_goal_state = 200):
         start_state = copy.deepcopy(self.board)
         stack = [start_state]
 
@@ -16,7 +17,9 @@ class Depth_first_branch_n_bound(Algorithm):
         best_state = None
         goal_states_visited = 0
 
-        while len(stack) > 0:
+        start_time = time.time()
+
+        while len(stack) > 0 and start_time - time.time() < max_time:
             state = stack.pop()
             self.total_states_used += 1
 

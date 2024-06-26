@@ -2,7 +2,8 @@ from .algorithm import Algorithm
 
 import copy
 import math
-import random
+
+import time
 
 class Depth_first_lukas(Algorithm):
     def __init__(self, board):
@@ -81,11 +82,13 @@ class Depth_first_lukas(Algorithm):
 
         return self.board
 
-    def run(self, max_depth=math.inf):
+    def run(self, max_depth=math.inf, max_time = math.inf):
         start_state = copy.deepcopy(self.board)
         stack = [start_state]
         first_time_pop = False
-        while len(stack) > 0:
+        start_time = time.time()
+
+        while len(stack) > 0 and start_time - time.time() < max_time:
             if first_time_pop == False:
                 state = stack.pop()
 
