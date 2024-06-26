@@ -2,6 +2,7 @@ from .algorithm import Algorithm
 
 import copy
 import math
+import time
 
 class Iterative_deepening(Algorithm):
     """
@@ -15,7 +16,7 @@ class Iterative_deepening(Algorithm):
 
         super().__init__(board)
 
-    def run(self, max_depth=math.inf):
+    def run(self, max_depth=math.inf, max_time = math.inf):
         """
         run a iterative deepening search, combining depth first and breadth first techniques, for a solution of the given board. 
         Intergrated stack.
@@ -30,7 +31,10 @@ class Iterative_deepening(Algorithm):
 
         goal_state = self.board.shape - 2
 
-        for _iterative_depth in range(1, max_depth):
+        start_time = time.time()
+        _iterative_depth = 1
+
+        while _iterative_depth in range(1, max_depth) and start_time - time.time() < max_time:
             state_dict = {}
             start_state = copy.deepcopy(self.board)
             stack = [start_state]
@@ -57,6 +61,8 @@ class Iterative_deepening(Algorithm):
                         elif state.depth < state_dict[unique_id]:
                             stack.append(possible_state)
                             state_dict[unique_id] = state.depth
+
+            _iterative_depth += 1
 
         print(f"no solution found within {max_depth} depth")
 
