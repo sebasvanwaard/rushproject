@@ -1,8 +1,9 @@
 import random
 import math
 import time
+import copy
 
-def random_algorithm(board, max_moves=math.inf, max_time = math.inf):
+def random_algorithm(start_board, max_moves=math.inf, max_time = math.inf):
 	"""
 	laat de board met auto's random stappen doen voor N keren of totdat het
 	een oplossing heeft
@@ -10,6 +11,7 @@ def random_algorithm(board, max_moves=math.inf, max_time = math.inf):
 		board: the starting board to be solved
 		max_moves: the max 
 	"""
+	board = copy.deepcopy(start_board)
 	car_names = list(board.cars.keys())
 	step_choices = [1, -1]
 	moves = []

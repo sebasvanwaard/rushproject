@@ -39,8 +39,6 @@ class A_star_nn(Algorithm):
             state_cost_dict = dict(sorted(state_cost_dict.items(), key=lambda item: item[1], reverse=True))
             state = state_cost_dict.popitem()[0]
 
-
-        print("joepie")
         return (state, state.depth, total_states_used, total_states_generated)
 
     
