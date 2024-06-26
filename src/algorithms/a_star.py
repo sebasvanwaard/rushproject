@@ -2,7 +2,6 @@ from .algorithm import Algorithm
 
 import copy
 import math
-from tensorflow.keras import models
 
 import time
 
@@ -36,7 +35,7 @@ class A_star(Algorithm):
         state_cost_dict = {state: 0}
 
         start_time = time.time()
-        
+
         while state.cars['X'].x_pos != goal_state and start_time - time.time() < max_time:
             total_states_used += 1
 
@@ -51,7 +50,6 @@ class A_star(Algorithm):
                     state_cost_dict[possible_state] = possible_state.depth + self.red_car_cost(possible_state) + self.red_blocking_cost(possible_state) + self.calc_board_cost(possible_state)
 
             state_cost_dict = dict(sorted(state_cost_dict.items(), key=lambda item: item[1], reverse=True))
-            # print(f"cost: {min(state_cost_dict.values())}")
             state = state_cost_dict.popitem()[0]
 
 
@@ -106,20 +104,17 @@ class A_star(Algorithm):
             return math.inf
 
         blocking_cars = self.get_blocking_cars(board, board.cars[car])
-        # print(blocking_cars)
 
         if '.' in blocking_cars:
             return cost
 
         for car in blocking_cars:
-            # print(car)
             if car is None:
                 cost = cost + 100
             elif board.cars[car].length == 2:
                 cost = cost + 1
             else:
                 cost = cost + 3
-        # cost = cost + 1
 
         cost1 = self.calc_cost(board, blocking_cars[0], cost, calc_depth)
         cost2 = self.calc_cost(board, blocking_cars[1], cost, calc_depth)
@@ -129,12 +124,10 @@ class A_star(Algorithm):
     def calc_board_cost(self, board):
         cars_blocking_red = self.get_blocking_red(board)
         total_cost = 0
-        # print(cars_blocking_red)
 
         for car_blocking_red in cars_blocking_red:
 
             total_cost += self.calc_cost(board, car_blocking_red, 0)
-            # print(total_cost)
             pass
 
         return total_cost

@@ -37,4 +37,4 @@ def random_algorithm(board, max_moves=math.inf, max_time = math.inf):
 			solved = True
 			break
 
-	return board, valid_moves, total_moves
+	return board, valid_moves, total_moves, total_moves
