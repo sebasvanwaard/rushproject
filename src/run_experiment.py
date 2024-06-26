@@ -2,7 +2,10 @@ import csv
 import math
 import os
 
-from algorithms import breadth_first, depth_first, a_star, iterative_deepening, randomize
+from algorithms import breadth_first, breadth_first_lukas, \
+                        depth_first, depth_first_lukas, depth_first_branch_n_bound, depth_first_random_start,\
+                        a_star, a_star_lukas, a_star_nn, \
+                        iterative_deepening, randomize
 from game.board import Board
 
 
@@ -49,7 +52,9 @@ def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf):
 
 
 if __name__ == '__main__':
-    algorithms = ['baseline (random)', depth_first.Depth_first, breadth_first.Breadth_first, a_star.A_star, iterative_deepening.Iterative_deepening]
+    algorithms = ['baseline (random)',
+                   depth_first.Depth_first, depth_first_lukas.Depth_first_lukas, 
+                   breadth_first.Breadth_first, a_star.A_star, iterative_deepening.Iterative_deepening]
 
     for algorithm in algorithms:
         run_algorithm('gameboardscopy', algorithm, 'experiments/data2', 0)

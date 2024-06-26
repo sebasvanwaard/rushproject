@@ -41,7 +41,7 @@ class Depth_first_branch_n_bound(Algorithm):
 
         start_time = time.time()
 
-        while len(stack) > 0 and start_time - time.time() < max_time:
+        while len(stack) > 0 and time.time() - start_time < max_time:
             state = stack.pop()
             self.total_states_used += 1
 

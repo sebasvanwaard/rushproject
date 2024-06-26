@@ -88,7 +88,7 @@ class Depth_first_lukas(Algorithm):
         first_time_pop = False
         start_time = time.time()
 
-        while len(stack) > 0 and start_time - time.time() < max_time:
+        while len(stack) > 0 and time.time() - start_time < max_time:
             if first_time_pop == False:
                 state = stack.pop()
 
