@@ -61,9 +61,3 @@ class Algorithm:
             True is state is a possible goal state, False if not
         """
         return state.cars['X'].x_pos == self.board.shape - 2
-
-    def run(self):
-        pass
-
-    def reset():
-        pass
