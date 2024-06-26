@@ -26,7 +26,6 @@ def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf):
             output_file = f"{output_dir}/{'randomize'}"
 
             for iteration in range(1, 10):
-                print(iteration)
                 final_board, valid_moves, total_moves, total_states_generated = randomize.random_algorithm(board, max_time = max_time)
                 data.append([iteration, board_path, valid_moves, total_moves])
                 
