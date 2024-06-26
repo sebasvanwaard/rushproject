@@ -80,7 +80,7 @@ Wij hebben hierbij nog twee relevante toevoegingen gedaan:
     - [AFMAKEN]
     - [AFMAKEN]
 - **a_star_NN**: hierbij hebben we een neural network gebouwd en deze getraind op de dataset van Michael Fogleman, waardoor we hebben geprobeerd te voorspellen hoeveel zetten er nog nodig zijn om tot de oplossing te komen met elke mogelijke start positie. Vervolgens wordt dit in A* gebruikt door telkens het bord te kiezen, waarvoor wordt voorspelt dat er nog de minste zetten nodig zijn.
-    dataset is te vinden op de website van Michael Fogleman: https://www.michaelfogleman.com/projects/#rush 
+    De gebruikte dataset is te vinden op de website van Michael Fogleman: https://www.michaelfogleman.com/projects/#rush 
 
 
 ## Auteurs
