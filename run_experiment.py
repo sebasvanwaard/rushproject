@@ -56,7 +56,7 @@ def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf):
 
 if __name__ == '__main__':
     algorithms = ['baseline (random)',
-                    depth_first.Depth_first, depth_first_lukas.Depth_first_lukas, depth_first_branch_n_bound.Depth_first_branch_n_bound,
+                    depth_first.Depth_first, depth_first_lukas.Depth_first_lukas, depth_first_branch_n_bound.Depth_first_branch_n_bound, depth_first_random_start.Depth_first_random_start,
                     breadth_first.Breadth_first, breadth_first_lukas.Breadth_first_lukas,
                     a_star.A_star, a_star_nn.A_star_nn, a_star_lukas.A_star_lukas,
                     iterative_deepening.Iterative_deepening]
