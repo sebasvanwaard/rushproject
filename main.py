@@ -1,8 +1,8 @@
 import math
 
-from src.experiment import *
-from src.game import *
-from src.algorithms import breadth_first, depth_first, a_star, iterative_deepening, a_star_nn, randomize
+from src.algorithms import breadth_first_lukas, depth_first_lukas
+from src.game.board import Board
+from src.algorithms import a_star, iterative_deepening, a_star_nn, randomize
 from src.algorithms import a_star_lukas as lukas
 
 import argparse
@@ -10,6 +10,7 @@ import importlib
 
 from src.plots import visualize
 import time
+import copy
 
 # test = Experiment("gameboards/Rushhour12x12_7.csv")
 
