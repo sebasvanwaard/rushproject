@@ -34,8 +34,11 @@ def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf):
         else:
             output_file = f"{output_dir}/{algorithm.__name__}"
             alg = algorithm(board)
-            
-            final_board, total_moves, total_states_used, total_states_generated = alg.run(max_time = max_time)
+
+            output = alg.run(max_time = max_time)
+            final_board, total_moves, total_states_used, total_states_generated = None, None, None, None
+            if output is not False:
+                final_board, total_moves, total_states_used, total_states_generated = output
             data.append([board_path, total_moves, total_states_used, total_states_generated])
 
             with open(output_file, 'w') as file:
@@ -49,4 +52,4 @@ if __name__ == '__main__':
     algorithms = ['baseline (random)', depth_first.Depth_first, breadth_first.Breadth_first, a_star.A_star, iterative_deepening.Iterative_deepening]
 
     for algorithm in algorithms:
-        run_algorithm('gameboardscopy', algorithm, 'experiments/data2', 2)
+        run_algorithm('gameboardscopy', algorithm, 'experiments/data2', 0)

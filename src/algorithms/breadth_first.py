@@ -37,7 +37,7 @@ class Breadth_first(Algorithm):
 
 		start_time = time.time()
 
-		while not possible_states.empty() and start_time - time.time() < max_time:
+		while not possible_states.empty() and (time.time() - start_time) < max_time:
 			state = possible_states.get()
 			self.total_states_used += 1
 

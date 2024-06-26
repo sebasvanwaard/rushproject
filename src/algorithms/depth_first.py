@@ -33,8 +33,8 @@ class Depth_first(Algorithm):
         stack = [start_state]
         start_time = time.time()
         
-        while len(stack) > 0 and time.time() - start_time < max_time:
-            print(time.time())
+        while len(stack) > 0 and (time.time() - start_time) < max_time:
+            print(time.time() - start_time)
             state = stack.pop()
             self.total_states_used += 1
 
