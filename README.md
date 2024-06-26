@@ -51,23 +51,23 @@ De lijst hieronder beschrijft de belangrijkste mappen en files in het project, e
 ## Algoritmes
 Hieronder worden de verschillende algoritmes die wij gebruikt hebben en terug te vinden zijn onder **/src/algorithms**, beschreven.
 
-### Randomize
+### 1. Randomize
 Randomize is het algoritme waarbij er telkens een random auto een random plaats wordt opgeschoven tot dat de rode auto uit het speelveld kan rijden of tot dat het maxiaal aantal moves is bereikt. Echter staat het maximaal aantal moves in beginsel op oneindig. 
 
-### Breadth first
+### 2. Breadth first
 Breadth first is het algoritme waarbij er gebruik wordt gemaakt van een breadth first search. Hierbij worden telkens de mogelijke volgende borden gegenereerd en hier wordt vervolgens een breadth first search op toegepast tot dat er een oplossing voor de puzzel is gevonden en de rode auto dus het speelveld uit kan rijden. 
 
-### Depth first
+### 3. Depth first
 Depth first is het algoritme waarbij er gebruik wordt gemaakt van een depth first search. Hierbij worden telkens de mogelijke volgende borden gegenereeerd en hier wordt vervolgens een depth first search op toegepast tot dat er een oplossing voor de puzzel is gevonden en de rode auto dus het speelveld uit kan rijden. 
 
 Wij hebben hierbij nog twee relevante toevoegingen gedaan:
-1. Random_start_depth_first: dit is een depth first algoritme, maar hierbij wordt niet telkens het bord wat als eerst wordt gegenereerd gekozen om de depth first op toe te passen, maar wordt telkens een van de mogelijke borden random gekozen. 
-2. Brach_n_bound_depth_first: dit is ook een depth first algoritme, maar in plaats van dat het depth first algoritme stopt als er een oplossing voor het speelbord is gevonden, gaat het door met zoeken naar een betere oplossing. Dit door telkens niet tot een diepere diepte te zoeken dan al een keer als oplossing is gevonden. 
+i) Random_start_depth_first: dit is een depth first algoritme, maar hierbij wordt niet telkens het bord wat als eerst wordt gegenereerd gekozen om de depth first op toe te passen, maar wordt telkens een van de mogelijke borden random gekozen. 
+ii) Brach_n_bound_depth_first: dit is ook een depth first algoritme, maar in plaats van dat het depth first algoritme stopt als er een oplossing voor het speelbord is gevonden, gaat het door met zoeken naar een betere oplossing. Dit door telkens niet tot een diepere diepte te zoeken dan al een keer als oplossing is gevonden. 
 
-### Iterative deepening
+### 4. Iterative deepening
 Het Iterative deepening algoritme wordt gebruik gemaakt van de combinatie van het depth first en breadth first algoritme. Hierbij wordt telkens tussen de nieuwe mogelijke board configuraties gezocht met een depth first search tot een diepte die kleiner is dan de iterative depth, tot dat er een oplossing wordt gevonden. De iterative depth wordt telkens iets groter, als er geen oplossing wordt gevonden. 
 
-### A*
+### 5. A*
 Het A* algoritme hebben wij gebruikt om aan bepaalde borden een bepaalde kosten te hangen, zodat we een onderscheid konden gaan maken tussen goede en minder goede borden. Hierbij hebben wij telkens de mogelijk volgende bord situaties gegenereerd en vervolgens voor elk van deze borden de "kosten" berekend. Uiteindelijk wordt er altijd verder gewerkt met het "goedkoopste" bord, tot dat er een oplossing is gevonden. 
 
 De heuristieken die wij in eerste instatie hiervoor hebben gebruikt zijn:
@@ -76,10 +76,10 @@ De heuristieken die wij in eerste instatie hiervoor hebben gebruikt zijn:
 - calc_board_cost: hierbij wordt berekend hoeveel auto's de blokkerende auto blokkeren. Dus stel er moeten 3 auto's bewogen worden voordat een auto die de rode auto blokkeerd aan de kant kan worden geschoven, dan bepaald dit de calc_board_cost. 
 
 Wij hebben hierbij nog twee relevante toevoegingen gedaan:
-2. a_star_lukas: hierbij hebben we bovenstaande heuristieken veranderd al naar gelang de uitkomst beter werd. Hierdoor zijn we uiteindelijk op de volgende heuristieken uitgekomen:
+i) a_star_lukas: hierbij hebben we bovenstaande heuristieken veranderd al naar gelang de uitkomst beter werd. Hierdoor zijn we uiteindelijk op de volgende heuristieken uitgekomen:
     - 
     - 
-3. a_star_NN: hierbij hebben we een neural network gebouwd en deze getraind op de dataset van Michael Fogleman, waardoor we hebben geprobeerd te voorspellen hoeveel zetten er nog nodig zijn om tot de oplossing te komen met elke mogelijke start positie. Vervolgens wordt dit in A* gebruikt door telkens het bord te kiezen, waarvoor wordt voorspelt dat er nog de minste zetten nodig zijn.
+ii) a_star_NN: hierbij hebben we een neural network gebouwd en deze getraind op de dataset van Michael Fogleman, waardoor we hebben geprobeerd te voorspellen hoeveel zetten er nog nodig zijn om tot de oplossing te komen met elke mogelijke start positie. Vervolgens wordt dit in A* gebruikt door telkens het bord te kiezen, waarvoor wordt voorspelt dat er nog de minste zetten nodig zijn.
     dataset is te vinden op de website van Michael Fogleman: https://www.michaelfogleman.com/projects/#rush 
 
 
