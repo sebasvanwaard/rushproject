@@ -7,6 +7,13 @@ import csv
 
 
 def convert_board(board_string):
+	"""
+	Converts a board in Michael Fogleman's format to our format:
+	args:
+		board_string: the string in Michaels format
+	returns:
+		converted_string: the board string in our format
+	"""
 	converted_string = ""
 	for char in board_string:
 		if char == 'A':
@@ -19,6 +26,14 @@ def convert_board(board_string):
 	return converted_string
 
 def board_string_to_df(board_string, shape):
+	"""
+	Function that converts the converted_board string to a dataframe that can be writen to the board csv
+	args:
+		board_string: the converted board_string
+		shape: the shape of the board
+	returns:
+		pandas dataframe with the board
+	"""
 	board_dict = {}
 
 	for i in range(len(board_string)):		
@@ -39,15 +54,7 @@ def board_string_to_df(board_string, shape):
 	return df
 
 
-# with open('src/neural_cost/rush.txt') as file:
-# 	i = 3
-# 	for line in file:
-# 		split_line = line.split(sep=' ')
-# 		if 'x' not in split_line[1]:
-# 			i += 1
-# 			converted_board = convert_board(split_line[1])
-# 			board_df = board_string_to_df(converted_board, 6)
-# 			board_df.to_csv(f'src/neural_cost/gameboards/Rushhour6x6_{i}')
+# code to convert the list of board by Michael Fogleman to a format we could train our model on
 
 data_dicts = []
 with open('src/neural_cost/rush.txt') as file:
