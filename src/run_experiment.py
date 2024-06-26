@@ -41,6 +41,12 @@ def run_algorithm(gameboards_dir, algorithm, output_dir):
                 print(f"run: {n_runs}")
                 n_runs += 1
             
+                if alg.run() == False:
+                    data.append(['FALSE'])
+                
+                if alg.run() != False:
+                    pass
+
                 final_board, total_moves, total_states_used, total_states_generated = alg.run()
                 data.append([board_path, total_moves, total_states_used, total_states_generated])
 
@@ -55,4 +61,4 @@ if __name__ == '__main__':
     algorithms = ['baseline (random)', depth_first.Depth_first, breadth_first.Breadth_first, a_star.A_star, iterative_deepening.Iterative_deepening]
 
     for algorithm in algorithms:
-        run_algorithm('../gameboardscopy', algorithm, 'experiments/data2')
+        run_algorithm('gameboardscopy', algorithm, 'experiments/data2')

@@ -5,10 +5,27 @@ import math
 from tensorflow.keras import models
 
 class A_star(Algorithm):
+    """
+	This is a subclass of the class Algorithm and entails the breadth first algorithm. 
+	"""
+
     def __init__(self, board):
+        """
+		The subclass Depth first initializes everything from the parent class Algorithm.
+		"""
+
         super().__init__(board)
 
     def run(self):
+        """
+        run an A* search for a solution of the given board, with several heuristics. Using a priority dictionary.
+		returns:
+			state: the board of the final state
+            state_depth: the depth of the board of the final state
+			total_states_used: the total states visited before the solution was found
+			total_states_generated: the total amount of states generated before the solution was found
+        """
+
         state = copy.deepcopy(self.board)
         goal_state = self.board.shape - 2
 

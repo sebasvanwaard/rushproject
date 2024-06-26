@@ -4,10 +4,29 @@ import copy
 import math
 
 class Depth_first(Algorithm):
+    """
+	This is a subclass of the class Algorithm and entails the breadth first algorithm. 
+	"""
+    
     def __init__(self, board):
+        """
+		The subclass Depth first initializes everything from the parent class Algorithm.
+		"""
+
         super().__init__(board)
 
     def run(self, max_depth=math.inf):
+        """
+        run a depth first search for a solution of the given board. Integrated stack.
+		args:
+			max_depth: the maximum depth the algorithm will search before giving up. Defaults to math.inf
+		returns:
+			state: the board of the final state
+            state_depth: the depth of the board of the final state
+			total_states_used: the total states visited before the solution was found
+			total_states_generated: the total amount of states generated before the solution was found
+        """
+
         start_state = copy.deepcopy(self.board)
         stack = [start_state]
         while len(stack) > 0:
