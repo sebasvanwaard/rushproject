@@ -1,5 +1,3 @@
-import math
-
 from src.algorithms import breadth_first_lukas, depth_first_lukas
 from src.game.board import Board
 from src.algorithms import a_star, iterative_deepening, a_star_nn, randomize
