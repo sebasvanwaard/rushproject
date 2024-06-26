@@ -6,9 +6,9 @@ import time
 
 class Depth_first(Algorithm):
     """
-	This is a subclass of the class Algorithm and entails the depth first algorithm. 
+	This is a subclass of the class Algorithm and entails the depth first algorithm.
 	"""
-    
+
     def __init__(self, board):
         """
 		The subclass Depth first initializes everything from the parent class Algorithm.
@@ -20,7 +20,8 @@ class Depth_first(Algorithm):
         """
         run a depth first search for a solution of the given board. Integrated stack.
 		args:
-			max_depth: the maximum depth the algorithm will search before giving up. Defaults to math.inf
+			max_depth: the maximum depth the algorithm
+            will search before giving up. Defaults to math.inf
 		returns:
 			state: the board of the final state
             state_depth: the depth of the board of the final state
@@ -31,7 +32,7 @@ class Depth_first(Algorithm):
         start_state = copy.deepcopy(self.board)
         stack = [start_state]
         start_time = time.time()
-        
+
         while len(stack) > 0 and (time.time() - start_time) < max_time:
             state = stack.pop()
             self.total_states_used += 1

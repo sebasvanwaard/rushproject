@@ -5,10 +5,23 @@ import math
 import time
 
 class Depth_first_lukas(Algorithm):
+    """
+	This is a subclass of the class Algorithm and
+    entails the depth first algorithm.
+    this is an algorithm without
+    the use of deepcopy in the get_action function
+	"""
     def __init__(self, board):
+        """
+		The subclass Depth first initializes everything from the parent class Algorithm.
+		"""
         super().__init__(board)
 
     def get_actions(self, board):
+        """
+        gets all the possible moves for every car and checks if the new board(s)
+        are in the archive and makes a tuple with the depth and moves list
+        """
         moves = []
         possible_gamestates = []
 
@@ -55,6 +68,10 @@ class Depth_first_lukas(Algorithm):
         return True
 
     def undo_modify_state(self):
+        """
+        reverts the board to the original board given to the algorithm
+        at the start
+        """
         for move in self.board.moves[::-1]:
             car_name, step = move
             self.board.cars[car_name].simple_move(-step)
@@ -65,6 +82,12 @@ class Depth_first_lukas(Algorithm):
         return self.board
 
     def modify_state(self, state, packaged_pop):
+        """
+        changes the board to the popped state from the stack
+        by giving it the tuple with the new depth and moves list
+        the moves list is then applied to the simple move function to create
+        the new board which then can be used to get new actions
+        """
         depth_, moves = packaged_pop
 
         self.board.depth = depth_
@@ -77,6 +100,17 @@ class Depth_first_lukas(Algorithm):
         return self.board
 
     def run(self, max_depth=math.inf, max_time = math.inf):
+        """
+        run a depth first search for a solution of the given board. Integrated stack.
+		args:
+			max_depth: the maximum depth the algorithm
+            will search before giving up. Defaults to math.inf
+		returns:
+			state: the board of the final state
+            state_depth: the depth of the board of the final state
+			total_states_used: the total states visited before the solution was found
+			total_states_generated: the total amount of states generated before the solution was found
+        """
         start_state = copy.deepcopy(self.board)
         stack = [start_state]
         first_time_pop = False
@@ -87,6 +121,7 @@ class Depth_first_lukas(Algorithm):
                 state = stack.pop()
 
             if self.is_goal_state(state):
+                self.board = start_state
                 return (state, state.depth, self.total_states_used, self.total_states_generated)
 
             if state.depth < max_depth:

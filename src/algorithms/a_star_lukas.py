@@ -5,12 +5,22 @@ import math
 import time
 
 class A_star_lukas(Algorithm):
+    """
+	This is a subclass of the class Algorithm and entails the A* algorithm.
+    this one is an algorithm without
+    the use of deepcopy in the get_action function
+	"""
     def __init__(self, board):
+        """
+		The subclass A* initializes everything from the parent class Algorithm.
+		"""
         super().__init__(board)
+
     def on_or_off_goalline(self, board):
         """
-        checkt de kost van alles wat anders dan de rode auto op de goal lijn
-        staat. afhankelijk van het type auto is de kosten hoger of lager
+        checks the cost of every car except the red car
+        that is vertical and on or above the goal line, resulting in a different
+        cost depending on the position of the cars
         """
         cost = 0
         v_trucks, v_cars = self.get_orientation_cars_trucks(board, 'V')
@@ -37,8 +47,9 @@ class A_star_lukas(Algorithm):
 
     def cost_h_cars(self, board):
         """
-        checkt welke horizontale auto's links of rechts van de
-        rode auto staan. hoe meer links hoe duurder de cost
+        checks for every horizontal car if it is to the left or right of the
+        red car and that is represented in the difference in costs depending on
+        how far from the red car
         """
         cost = 0
         h_trucks, h_cars = self.get_orientation_cars_trucks(board, 'H')
@@ -66,9 +77,9 @@ class A_star_lukas(Algorithm):
 
     def get_orientation_cars_trucks(self, board, orientation):
         """
-        maakt een lijst met van alle auto's met de meegegeven orientatie
-        en een lijst van all trucks met de meegegeven orientatie
+        makes two lists for cars and trucks for a given orientation
         """
+
         cost = 0
         orientation_trucks = []
         orientation_cars= []
@@ -83,7 +94,8 @@ class A_star_lukas(Algorithm):
 
     def get_blocking_vehicles(self, board, orientation):
         """
-        van een gegeven orientatie, kijkt hoeveel voertuigen een auto blokkeren
+        from a given orientation of cars and trucks, checks if there are cars
+        and/or trucks blocking it, represented in a difference in cost.
         """
         cost = 0
         orientation_trucks, orientation_cars = self.get_orientation_cars_trucks(board, orientation)
@@ -111,6 +123,9 @@ class A_star_lukas(Algorithm):
 
 
     def get_blocking_cars(self, board, car):
+        """
+        gives a list of two cars that blocks the given car
+        """
         blocking_car1 = None
         blocking_car2 = None
 
@@ -128,6 +143,12 @@ class A_star_lukas(Algorithm):
         return [blocking_car1, blocking_car2]
 
     def get_actions(self, board):
+        """
+        gets all the possible moves for every car and checks if the new board(s)
+        are in the archive and makes a tuple with the cost in it and the new depth
+        and moves list to. the new board is created by making a move and then
+        giving the old x and y positions to the cars and reverting the board
+        """
         moves = []
         possible_gamestates = []
 
@@ -175,6 +196,10 @@ class A_star_lukas(Algorithm):
         return True
 
     def undo_modify_state(self):
+        """
+        reverts the board to the original board given to the algorithm
+        at the start
+        """
         for move in self.board.moves[::-1]:
             car_name, step = move
             self.board.cars[car_name].simple_move(-step)
@@ -185,6 +210,9 @@ class A_star_lukas(Algorithm):
         return self.board
 
     def modify_state(self, state, packaged_pop):
+        """
+        changes the board to the popped state from the stack
+        """
         cost, (depth_, moves) = packaged_pop
 
         self.board.depth = depth_
@@ -197,25 +225,41 @@ class A_star_lukas(Algorithm):
         return self.board
 
     def run(self, max_depth=math.inf, max_time = math.inf):
+        """
+        run an A* search for a solution of the given board, with several
+        heuristics. Using a sorted list.
+		returns:
+			state: the board of the final state
+            state_depth: the depth of the board of the final state
+			total_states_used: the total states visited before the solution was found
+			total_states_generated: the total amount of states generated before the solution was found
+        """
         start_state = copy.deepcopy(self.board)
         start_board = copy.deepcopy(self.board)
         stack = [start_state]
+
+        # this variable is a one time use to make sure the first pop works
+        # properly
         first_time_pop = False
 
         start_time = time.time()
+
         while len(stack) > 0 and time.time() - start_time < max_time:
             if first_time_pop == False:
                 state = stack.pop()
 
             if self.is_goal_state(state):
+                self.board = start_board
                 return (state, state.depth, self.total_states_used, self.total_states_generated)
 
             if state.depth < max_depth:
                 possible_states = self.get_actions(state)
                 stack.extend(possible_states)
                 stack = sorted(stack, key=lambda x: x[0], reverse=True)
+
             if first_time_pop == True:
                 state = self.undo_modify_state()
+
             state = self.modify_state(state, stack.pop())
             first_time_pop = True
             self.total_states_used += 1
