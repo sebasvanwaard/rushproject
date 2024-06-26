@@ -64,6 +64,13 @@ class A_star_nn(Algorithm):
     
     
     def calc_cost(self, board):
+        """
+        calculates the cost of a board, by using the neural network model which predicts how many moves are necessary to solve the puzzle.
+        args:
+            board: gives the board for which the cost should be calculated.
+        returns:
+            the cost of the board.
+        """
         x_data = board.grid.flatten()
 
         to_ascii = np.vectorize(ord)
