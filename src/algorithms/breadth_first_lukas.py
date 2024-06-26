@@ -109,4 +109,4 @@ class Breadth_first_lukas(Algorithm):
 
         print(f"no solution found within {max_depth} depth")
         self.board = start_board
-        return board, None, None, None
+        return False

@@ -8,7 +8,7 @@ from tensorflow.keras import models
 import time
 
 class A_star_nn(Algorithm):
-    def __init__(self, board, model):
+    def __init__(self, board, model="src/neural_cost/models/board_cost_model_36x72x144x1.h5"):
         super().__init__(board)
         self.cost_model = models.load_model(model)
 
