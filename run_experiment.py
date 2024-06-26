@@ -4,11 +4,11 @@ import os
 
 import argparse
 
-from algorithms import breadth_first, breadth_first_lukas, \
+from src.algorithms import breadth_first, breadth_first_lukas, \
                         depth_first, depth_first_lukas, depth_first_branch_n_bound, depth_first_random_start,\
                         a_star, a_star_lukas, a_star_nn, \
                         iterative_deepening, randomize
-from game.board import Board
+from src.game.board import Board
 
 
 def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf):
@@ -60,7 +60,12 @@ if __name__ == '__main__':
                     a_star.A_star, a_star_nn.A_star_nn, a_star_lukas.A_star_lukas,
                     iterative_deepening.Iterative_deepening]
 
+    parser = argparse.ArgumentParser(description="Run all algorithms")
+    parser.add_argument('gamefile_path', help='The path to the directory containing the gamefile.csv you want to test on')
+    parser.add_argument('output_path', help='path to directory you want to output the data to')
+    parser.add_argument('-max_time', default = 300, help='the maximum time an iteration can take fan any algorithm (in seconds)')
 
+    args = parser.parse_args()
 
     for algorithm in algorithms:
-        run_algorithm('gameboardscopy', algorithm, 'experiments/data2', 0)
+        run_algorithm(args.gamefile_path, algorithm, args.output_path, int(args.max_time))
