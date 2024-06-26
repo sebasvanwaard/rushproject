@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# own
+.DS_Store
+__pycache__
+
 # Distribution / packaging
 .Python
 build/
