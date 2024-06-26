@@ -1,6 +1,5 @@
 import csv
 import os
-import time
 
 from algorithms import breadth_first, depth_first, a_star, iterative_deepening, randomize
 from game.board import Board
@@ -19,8 +18,9 @@ def run_algorithm(gameboards_dir, algorithm, output_dir):
         if algorithm == 'baseline (random)':
             output_file = f"{output_dir}/{'randomize'}"
 
-            for iteration in range(1, 1000):
-                final_board, valid_moves, total_moves = randomize.random_algorithm(board)
+            for iteration in range(1, 10):
+                print(iteration)
+                final_board, valid_moves, total_moves, total_states_generated = randomize.random_algorithm(board)
                 data.append([iteration, board_path, valid_moves, total_moves])
                 
         
@@ -33,22 +33,9 @@ def run_algorithm(gameboards_dir, algorithm, output_dir):
         else:
             output_file = f"{output_dir}/{algorithm.__name__}"
             alg = algorithm(board)
-
-            start = time.time()
-            n_runs = 0
-
-            while time.time() - start < 3:
-                print(f"run: {n_runs}")
-                n_runs += 1
             
-                if alg.run() == False:
-                    data.append(['FALSE'])
-                
-                if alg.run() != False:
-                    pass
-
-                final_board, total_moves, total_states_used, total_states_generated = alg.run()
-                data.append([board_path, total_moves, total_states_used, total_states_generated])
+            final_board, total_moves, total_states_used, total_states_generated = alg.run()
+            data.append([board_path, total_moves, total_states_used, total_states_generated])
 
             with open(output_file, 'w') as file:
                 writer = csv.writer(file)
