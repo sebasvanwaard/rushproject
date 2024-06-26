@@ -2,7 +2,6 @@ from .algorithm import Algorithm
 
 import copy
 import math
-
 import time
 
 class A_star(Algorithm):

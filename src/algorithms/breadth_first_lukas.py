@@ -2,7 +2,6 @@ from .algorithm import Algorithm
 
 import copy
 import math
-
 import time
 
 class Breadth_first_lukas(Algorithm):
