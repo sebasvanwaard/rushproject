@@ -22,6 +22,7 @@ def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf):
         board = Board(f"{gameboards_dir}/{board_path}")
 
         if algorithm == 'baseline (random)':
+            print("Running Randomize")
             output_file = f"{output_dir}/{'randomize'}"
 
             for iteration in range(1, 10):
@@ -37,6 +38,7 @@ def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf):
                     writer.writerow(d)
 
         else:
+            print(f"Running {algorithm.__name__}")
             output_file = f"{output_dir}/{algorithm.__name__}"
             alg = algorithm(board)
 
