@@ -5,20 +5,23 @@ import copy
 import math
 import random
 
+import time
+
 class Depth_first_random_start(Algorithm):
     def __init__(self, board):
         super().__init__(board)
 
-    def run(self, max_random_choice_depth=0, max_depth=math.inf):
+    def run(self, max_random_choice_depth=0, max_depth=math.inf, max_time=math.inf):
         goal_state = self.board.shape - 2
 
         start_state = copy.deepcopy(self.board)
         stack = [start_state]
 
+        start_time = time.time()
 
         random_choice = 0
         possible_states = []
-        while len(stack) > 0:
+        while len(stack) > 0 and start_time - time.time() < max_time:
             state = stack.pop()
             self.total_states_used += 1
             # print(f"depth =  {state.depth}")

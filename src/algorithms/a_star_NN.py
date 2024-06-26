@@ -5,29 +5,14 @@ import math
 import numpy as np
 from tensorflow.keras import models
 
+import time
+
 class A_star_nn(Algorithm):
-    """
-	This is a subclass of the class Algorithm and entails the A*_NN algorithm. 
-	"""
-
     def __init__(self, board, model):
-        """
-		The subclass A* NN initializes everything from the parent class Algorithm.
-		"""
-
         super().__init__(board)
         self.cost_model = models.load_model(model)
 
-    def run(self):
-        """
-        run an A* search for a solution of the given board. Using a neural network model to determine the cost of a given board. 
-        Using a priority dictionary.
-		returns:
-			state: the board of the final state
-            state_depth: the depth of the board of the final state
-			total_states_used: the total states visited before the solution was found
-			total_states_generated: the total amount of states generated before the solution was found
-        """
+    def run(self, max_time = math.inf):
         state = copy.deepcopy(self.board)
         goal_state = self.board.shape - 2
 
@@ -35,8 +20,10 @@ class A_star_nn(Algorithm):
         total_states_generated = 0
         state_cost_dict = {state: 0}
 
+        start_time = time.time()
 
-        while state.cars['X'].x_pos != goal_state:
+
+        while state.cars['X'].x_pos != goal_state and start_time - time.time() < max_time:
             total_states_used += 1
 
             unique_id = state.get_unique_id()
