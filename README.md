@@ -19,6 +19,7 @@ Bijvoorbeeld:
 python main.py gameboards/Rushhour6x6_1.csv Breadth_first
 ```
 
+```
 en geeft de volgende output:
 The solution to gameboards/Rushhour6x6_1.csv was found in 1.3586597442626953
 The found solution: [('A', -1), ('C', -1), ('G', -1), ('G', -1), ('J', -1), ('I', 1), ('I', 1), ('H', 1), ('E', 1), ('D', -1), ('L', -1), ('L', -1), ('J', -1), ('J', -1), ('E', 1), ('E', 1), ('H', -1), ('I', -1), ('I', -1), ('I', -1), ('H', 1), ('E', -1), ('E', -1), ('J', 1), ('J', 1), ('J', 1), ('E', 1), ('L', 1), ('X', 1), ('X', 1), ('X', 1), ('G', 1), ('B', -1), ('I', -1), ('X', 1)]
