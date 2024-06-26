@@ -1,5 +1,3 @@
-import subprocess
-import time
 import csv
 import os
 
@@ -22,8 +20,8 @@ def run_algorithm(gameboards_dir, algorithm, output_dir):
 
             for iteration in range(1, 1000):
                 final_board, valid_moves, total_moves = randomize.random_algorithm(board)
-                iteration_data = {"iteration": iteration, "solved": final_board, "valid_moves": valid_moves, "total_moves": total_moves}
-                data.append(iteration_data)
+                data.append([iteration, board_path, valid_moves, total_moves])
+                
         
             with open(output_file, 'w') as file:
                 writer = csv.writer(file)
@@ -49,4 +47,4 @@ if __name__ == '__main__':
     algorithms = ['baseline (random)', depth_first.Depth_first, breadth_first.Breadth_first, a_star.A_star, iterative_deepening.Iterative_deepening]
 
     for algorithm in algorithms:
-        run_algorithm('gameboardscopy', algorithm, 'experiments/data2')
+        run_algorithm('../gameboardscopy', algorithm, 'experiments/data2')
