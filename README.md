@@ -13,7 +13,7 @@ Een voorbeeldje kan gerund worden door aanroepen van:
 python main.py pad_naar_boardfile Algoritme
 ```
 
-bijvoorbeeld
+Bijvoorbeeld:
 
 python main.py gameboards/Rushhour6x6_1.csv Breadth_first
 
