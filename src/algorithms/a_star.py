@@ -6,12 +6,12 @@ from tensorflow.keras import models
 
 class A_star(Algorithm):
     """
-	This is a subclass of the class Algorithm and entails the breadth first algorithm. 
+	This is a subclass of the class Algorithm and entails the A* algorithm. 
 	"""
 
     def __init__(self, board):
         """
-		The subclass Depth first initializes everything from the parent class Algorithm.
+		The subclass A* initializes everything from the parent class Algorithm.
 		"""
 
         super().__init__(board)
