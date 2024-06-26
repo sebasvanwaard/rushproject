@@ -5,6 +5,8 @@ import copy
 import math
 import queue
 
+import time
+
 # Breadth first subclass from the Algorithm parent class
 class Breadth_first(Algorithm):
 	"""
@@ -18,7 +20,7 @@ class Breadth_first(Algorithm):
 
 		super().__init__(board)
 
-	def run(self, max_depth=math.inf):
+	def run(self, max_depth=math.inf, max_time=math.inf):
 		"""
 		run a breadth first search for a solution of the given board.
 		args:
@@ -33,7 +35,9 @@ class Breadth_first(Algorithm):
 		possible_states = queue.Queue()
 		possible_states.put(copy.deepcopy(self.board))
 
-		while not possible_states.empty():
+		start_time = time.time()
+
+		while not possible_states.empty() and start_time - time.time() < max_time:
 			state = possible_states.get()
 			self.total_states_used += 1
 
