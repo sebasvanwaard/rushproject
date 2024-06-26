@@ -10,6 +10,11 @@ def random_algorithm(start_board, max_moves=math.inf, max_time = math.inf):
 	args:
 		board: the starting board to be solved
 		max_moves: the max 
+	returns:
+		board: the final board state
+		valid_moves: number of moves before finding the final state
+		total_moves: number of moves before finding the final state
+		total_moves: number of moves before finding the final state
 	"""
 	board = copy.deepcopy(start_board)
 	car_names = list(board.cars.keys())
