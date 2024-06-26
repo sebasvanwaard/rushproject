@@ -7,6 +7,8 @@ Rush Hour is een puzzelspel waarin de speler een rode auto uit een drukke parkee
 Deze codebase is volledig geschreven in Python 3.12.3.
 
 ### Gebruik
+
+## main.py
 Een voorbeeldje kan gerund worden door aanroepen van:
 
 ```
@@ -31,7 +33,7 @@ A total of 590 states were visited
 
 In de main.py staan verder voor elk algoritme wat proef code klaar waar met meer controle de algoritmes kunnen worden gerund.
 
-## Run_experiment
+## run_experiment.py
 Om alle experimenten te runnen kan run_experiment.py gebruikt worden.
 Run vanuit de root directory:
 python run_experiment.py path/to/gameboards path/to/outputdata -max_time 1234 -random_iterations 1234
