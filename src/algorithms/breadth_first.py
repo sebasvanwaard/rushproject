@@ -42,7 +42,6 @@ class Breadth_first(Algorithm):
 			self.total_states_used += 1
 
 			if self.is_goal_state(state):
-				print("joepie")					
 				return (state, state.depth, self.total_states_used, self.total_states_generated)
 
 			for possible_state in self.get_actions(state):
@@ -51,5 +50,4 @@ class Breadth_first(Algorithm):
 				if not self.is_in_archive(possible_state):
 					possible_states.put(possible_state)
 
-		print(f"no solution found within {max_depth} moves")
 		return False

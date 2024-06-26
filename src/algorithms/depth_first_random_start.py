@@ -26,7 +26,6 @@ class Depth_first_random_start(Algorithm):
             self.total_states_used += 1
 
             if self.is_goal_state(state):
-                print("joepie")
                 return (state, state.depth, self.total_states_used, self.total_states_generated)
 
             if state.depth < max_depth:
@@ -43,7 +42,5 @@ class Depth_first_random_start(Algorithm):
                 else:
                     stack.extend(possible_states)
                     possible_states.clear()
-
-        print(f"no solution found within {max_depth} depth")
 
         return False

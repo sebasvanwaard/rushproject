@@ -34,7 +34,6 @@ class Depth_first(Algorithm):
         start_time = time.time()
         
         while len(stack) > 0 and (time.time() - start_time) < max_time:
-            print(time.time() - start_time)
             state = stack.pop()
             self.total_states_used += 1
 
@@ -46,7 +45,5 @@ class Depth_first(Algorithm):
                     self.total_states_generated += 1
                     if not self.is_in_archive(possible_state):
                         stack.append(possible_state)
-
-        print(f"no solution found within {max_depth} depth")
 
         return False

@@ -44,10 +44,8 @@ class Iterative_deepening(Algorithm):
             while len(stack) > 0:
                 state = stack.pop()
                 total_states_used += 1
-                # print(f"depth =  {state.depth}")
 
                 if state.cars['X'].x_pos == goal_state:
-                    print("joepie")
                     return (state, state.depth, total_states_used, total_states_generated)
 
                 if state.depth < _iterative_depth:
@@ -62,7 +60,5 @@ class Iterative_deepening(Algorithm):
                             stack.append(possible_state)
                             state_dict[unique_id] = state.depth
             _iterative_depth += 1
-
-        print(f"no solution found within {max_depth} depth")
 
         return False

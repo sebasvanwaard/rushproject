@@ -56,26 +56,21 @@ class Breadth_first_lukas(Algorithm):
         return True
 
     def undo_modify_state(self):
-        # print(self.board.moves.reverse())
-
         for move in self.board.moves[::-1]:
             car_name, step = move
             self.board.cars[car_name].simple_move(-step)
         self.board.update()
-        # print(self.board.grid)
         self.board.depth = 0
         self.board.moves = []
 
         return self.board
 
     def modify_state(self, state, packaged_pop):
-        # moet naar tuple
         depth_, moves = packaged_pop
 
         self.board.depth = depth_
         self.board.moves = moves
         for move in self.board.moves:
-            # print(move)
             car_name, step = move
             self.board.cars[car_name].simple_move(step)
         self.board.update()
@@ -95,7 +90,6 @@ class Breadth_first_lukas(Algorithm):
                 state = stack.pop(0)
 
             if self.is_goal_state(state):
-                print("joepie")
                 return (state, state.depth, self.total_states_used, self.total_states_generated)
 
             if state.depth < max_depth:
@@ -107,6 +101,5 @@ class Breadth_first_lukas(Algorithm):
             first_time_pop = True
             self.total_states_used += 1
 
-        print(f"no solution found within {max_depth} depth")
         self.board = start_board
         return False
