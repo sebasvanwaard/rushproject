@@ -1,0 +1,8 @@
+gameboard,total_moves,total_states_used,total_states_generated
+Rushhour9x9_6.csv,,,
+Rushhour9x9_5.csv,,,
+Rushhour9x9_4.csv,,,
+Rushhour6x6_1.csv,43,593,0
+Rushhour6x6_2.csv,43,544,0
+Rushhour6x6_3.csv,123,13677,0
+Rushhour12x12_7.csv,,,

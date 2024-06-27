@@ -61,8 +61,6 @@ class A_star_nn(Algorithm):
 
         return (state, state.depth, total_states_used, total_states_generated)
 
-    
-    
     def calc_cost(self, board):
         """
         calculates the cost of a board, by using the neural network model which predicts how many moves are necessary to solve the puzzle.

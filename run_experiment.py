@@ -12,7 +12,6 @@ from src.game.board import Board
 
 
 def run_algorithm(gameboards_dir, algorithm, output_dir, max_time = math.inf, random_iterations = 1000):
-
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
